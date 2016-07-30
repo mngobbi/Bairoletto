@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bairoletto", "Bairoletto\Bairoletto.csproj", "{F9D2D8DE-71AD-4F32-8109-5A6B84847F99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "Bairoletto\WebApp.csproj", "{F9D2D8DE-71AD-4F32-8109-5A6B84847F99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{AB337DC7-3A3A-4C91-92E5-0C52A2236406}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F9D2D8DE-71AD-4F32-8109-5A6B84847F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9D2D8DE-71AD-4F32-8109-5A6B84847F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9D2D8DE-71AD-4F32-8109-5A6B84847F99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB337DC7-3A3A-4C91-92E5-0C52A2236406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB337DC7-3A3A-4C91-92E5-0C52A2236406}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB337DC7-3A3A-4C91-92E5-0C52A2236406}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB337DC7-3A3A-4C91-92E5-0C52A2236406}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
