@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data
 {
@@ -14,6 +12,7 @@ namespace Data
         mayorista = 5
     }
 
+    [Table("PuntosVenta")]
     public class PuntoVenta
     {
         public PuntoVenta()
@@ -23,7 +22,7 @@ namespace Data
 
         public int Id { get; set; }
 
-        public int PlantaElaboracionId { get; set; }
+        public int? PlantaElaboracionId { get; set; }
 
         [Required]
         [MaxLength(15)]

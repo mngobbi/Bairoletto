@@ -16,6 +16,7 @@ namespace Data
         entregada = 11
     }
 
+    [Table("OrdenesReposicion")]
     public class OrdenReposicion
     {
         public OrdenReposicion()
@@ -30,7 +31,7 @@ namespace Data
 
         public int PlantaElaboracionId { get; set; }
 
-        public int CamionId { get; set; }
+        public int? CamionId { get; set; }
 
         [Required]
         [Index]

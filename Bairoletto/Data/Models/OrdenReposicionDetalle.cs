@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data
 {
+    [Table("OrdenesReposicionDetalle")]
     public class OrdenReposicionDetalle
     {
         public int Id { get; set; }

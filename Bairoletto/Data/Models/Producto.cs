@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data
 {
@@ -9,6 +10,7 @@ namespace Data
         bebible = 3
     }
 
+    [Table("Productos")]
     public class Producto
     {
         public Producto()
