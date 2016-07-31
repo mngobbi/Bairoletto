@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -36,7 +37,7 @@ namespace Data
         public string Descripcion { get; set; }
 
         [Required]
-        public float PrecioCosto { get; set; }
+        public double PrecioCosto { get; set; }
 
         public string Foto { get; set; }
 

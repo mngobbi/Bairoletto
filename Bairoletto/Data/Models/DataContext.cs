@@ -15,6 +15,7 @@ namespace Data
         public virtual DbSet<OrdenReposicion> OrdenesReposicion { get; set; }
         public virtual DbSet<OrdenReposicionDetalle> OrdenesReposicionDetalle { get; set; }
         public virtual DbSet<Producto> Productos { get; set; }
+        public virtual DbSet<PuntoVentaProducto> PuntosVentaProductos { get; set; }
         public virtual DbSet<Camion> Camiones { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace Data
 
         public int? Stock { get; set; }
 
-        public float? Precio { get; set; }
+        public double? Precio { get; set; }
 
         public virtual PuntoVenta PuntoVenta { get; set; }
 

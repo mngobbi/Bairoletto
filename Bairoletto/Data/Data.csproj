@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201607311413245_ProductosPv.Designer.cs">
       <DependentUpon>201607311413245_ProductosPv.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607311443227_PropertyType.cs" />
+    <Compile Include="Migrations\201607311443227_PropertyType.Designer.cs">
+      <DependentUpon>201607311443227_PropertyType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Camion.cs" />
     <Compile Include="Models\DataContext.cs" />
@@ -97,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607311413245_ProductosPv.resx">
       <DependentUpon>201607311413245_ProductosPv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607311443227_PropertyType.resx">
+      <DependentUpon>201607311443227_PropertyType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
