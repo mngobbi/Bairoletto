@@ -16,6 +16,7 @@ namespace Data
         public Producto()
         {
             OrdenesReposicion = new HashSet<OrdenReposicionDetalle>();
+            PuntosVenta = new HashSet<PuntoVentaProducto>();
         }
 
         public int Id { get; set; }
@@ -40,5 +41,7 @@ namespace Data
         public string Foto { get; set; }
 
         public virtual ICollection<OrdenReposicionDetalle> OrdenesReposicion { get; set; }
+
+        public virtual ICollection<PuntoVentaProducto> PuntosVenta { get; set; }
     }
 }
