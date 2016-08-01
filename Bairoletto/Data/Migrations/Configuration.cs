@@ -77,10 +77,10 @@ namespace Data
                 new Producto { Id = 7, TipoProducto = TipoProducto.comestible, Codigo = "COM_PIZ_001", Nombre = "Pizza muzzarella con jamón", PrecioCosto = 23.60, Descripcion = "Mozzarella, jamón cocido, aceitunas verdes" },
                 new Producto { Id = 8, TipoProducto = TipoProducto.comestible, Codigo = "COM_PIZ_002", Nombre = "Pizza napolitana", PrecioCosto = 22.50, Descripcion = "Mozzarella, tomate, ajo, aceitunas verdes" },
                 new Producto { Id = 9, TipoProducto = TipoProducto.comestible, Codigo = "COM_PIZ_003", Nombre = "Pizza  fugazzeta", PrecioCosto = 20.25, Descripcion = "Mozzarella, cebolla, oregano" },
-                new Producto { Id = 10, TipoProducto = TipoProducto.comestible, Codigo = "BEB_GAS_001", Nombre = "Coca cola zero 2 1/4", PrecioCosto = 24.60 },
-                new Producto { Id = 11, TipoProducto = TipoProducto.comestible, Codigo = "BEB_GAS_002", Nombre = "7up 1 1/2", PrecioCosto = 18.50 },
-                new Producto { Id = 12, TipoProducto = TipoProducto.comestible, Codigo = "BEB_JUG_001", Nombre = "Levite pomelo 1 1/2", PrecioCosto = 15.40 },
-                new Producto { Id = 13, TipoProducto = TipoProducto.comestible, Codigo = "BEB_JUG_002", Nombre = "Aquarius multifruta 1 1/2", PrecioCosto = 14.80 },
+                new Producto { Id = 10, TipoProducto = TipoProducto.bebible, Codigo = "BEB_GAS_001", Nombre = "Coca cola zero 2 1/4", PrecioCosto = 24.60 },
+                new Producto { Id = 11, TipoProducto = TipoProducto.bebible, Codigo = "BEB_GAS_002", Nombre = "7up 1 1/2", PrecioCosto = 18.50 },
+                new Producto { Id = 12, TipoProducto = TipoProducto.bebible, Codigo = "BEB_JUG_001", Nombre = "Levite pomelo 1 1/2", PrecioCosto = 15.40 },
+                new Producto { Id = 13, TipoProducto = TipoProducto.bebible, Codigo = "BEB_JUG_002", Nombre = "Aquarius multifruta 1 1/2", PrecioCosto = 14.80 },
             });
 
             context.PuntosVentaProductos.AddOrUpdate(new PuntoVentaProducto[] {

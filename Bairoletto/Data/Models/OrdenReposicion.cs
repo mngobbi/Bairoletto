@@ -21,7 +21,9 @@ namespace Data
     {
         public OrdenReposicion()
         {
+            Numero = new Random().Next(99999999);
             FechaSolicitud = DateTime.Now;
+            Estado = OrdenReposicionEstado.nueva;
             Productos = new HashSet<OrdenReposicionDetalle>();
         }
 
@@ -43,8 +45,7 @@ namespace Data
         [Required]
         public DateTime FechaSolicitud { get; set; }
 
-        [Required]
-        public DateTime FechaEntrega { get; set; }
+        public DateTime? FechaEntrega { get; set; }
 
         public DateTime? FechaEntregaDeseada { get; set; }
 

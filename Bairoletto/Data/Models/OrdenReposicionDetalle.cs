@@ -16,7 +16,7 @@ namespace Data
         public int CantidadSolicitada { get; set; }
 
         [Required]
-        public float PrecioUnitario { get; set; }
+        public double PrecioUnitario { get; set; }
 
         public virtual OrdenReposicion OrdenReposicion { get; set; }
 
