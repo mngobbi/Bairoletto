@@ -1,4 +1,6 @@
-﻿namespace Data
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Data
 {
     public class ProductoDTO
     {
@@ -58,5 +60,17 @@
             cantidad_solicitada = pr.CantidadSolicitada;
             precio_unitario = pr.PrecioUnitario;
         }
+    }
+
+    public class ProductoReposicionNuevoDTO
+    {
+        [Required]
+        public int producto_id { get; set; }
+        
+        [Required]
+        public int cantidad_solicitada { get; set; }
+
+        [Required]
+        public double precio_unitario { get; set; }
     }
 }
