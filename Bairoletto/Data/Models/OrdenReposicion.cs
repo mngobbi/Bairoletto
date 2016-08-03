@@ -45,6 +45,8 @@ namespace Data
         [Required]
         public DateTime FechaSolicitud { get; set; }
 
+        public DateTime? FechaProcesada { get; set; }
+
         public DateTime? FechaEntrega { get; set; }
 
         public DateTime? FechaEntregaDeseada { get; set; }

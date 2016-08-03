@@ -154,6 +154,88 @@ namespace Data
             return Ok(new ReposicionResumenDTO(orden, pv));
         }
 
+        [Route("{id:int}/aprobar")]
+        [HttpPost]
+        [ResponseType(typeof(ReposicionResumenDTO))]
+        public IHttpActionResult PostAprobar(int id, ReposicionAprobarDTO aprobar)
+        {
+            if (!ModelState.IsValid || id != aprobar.reposicion_id) return BadRequest(ModelState);
+
+            OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
+            if (orden == null) return NotFound();
+
+            orden.FechaProcesada = DateTime.Now;
+            orden.FechaEntegaEstimada = aprobar.fecha_entrega_estimada;
+            orden.Estado = OrdenReposicionEstado.confirmada;
+
+            db.SaveChanges();
+
+            return Ok(new ReposicionResumenDTO(orden, orden.PuntoVenta));
+        }
+
+        [Route("{id:int}/rechazar")]
+        [HttpPost]
+        [ResponseType(typeof(ReposicionResumenDTO))]
+        public IHttpActionResult PostRechazar(int id, ReposicionRechazarDTO rechazar)
+        {
+            if (!ModelState.IsValid || id != rechazar.reposicion_id) return BadRequest(ModelState);
+
+            OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
+            if (orden == null) return NotFound();
+
+            orden.FechaProcesada = DateTime.Now;
+            orden.Estado = OrdenReposicionEstado.cancelada;
+
+            db.SaveChanges();
+
+            return Ok(new ReposicionResumenDTO(orden, orden.PuntoVenta));
+        }
+
+        [Route("{id:int}/enviar")]
+        [HttpPost]
+        [ResponseType(typeof(ReposicionDTO))]
+        public IHttpActionResult PostEnviar(int id, ReposicionEnviarDTO enviar)
+        {
+            if (!ModelState.IsValid || id != enviar.reposicion_id) return BadRequest(ModelState);
+
+            OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
+            if (orden == null) return NotFound();
+
+            Camion camion = db.Camiones.Where(x => x.Id == enviar.camion_id && x.Estado == CamionEstado.disponible).FirstOrDefault();
+            if (camion == null) return NotFound();
+
+            orden.CamionId = camion.Id;
+            orden.Estado = OrdenReposicionEstado.en_transito;
+
+            camion.Estado = CamionEstado.no_disponible;
+
+            db.SaveChanges();
+
+            return Ok(new ReposicionDTO(orden, orden.PuntoVenta, orden.Productos.ToArray(), camion));
+        }
+
+        [Route("{id:int}/recepcion")]
+        [HttpPost]
+        [ResponseType(typeof(ReposicionResumenDTO))]
+        public IHttpActionResult PostRecepcion(int id, ReposicionRecepcionDTO recepcion)
+        {
+            if (!ModelState.IsValid || id != recepcion.reposicion_id) return BadRequest(ModelState);
+
+            OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
+            if (orden == null) return NotFound();
+
+            Camion camion = db.Camiones.Where(x => x.Id == orden.CamionId).FirstOrDefault();
+
+            orden.FechaEntrega = DateTime.Now;
+            orden.Estado = OrdenReposicionEstado.entregada;
+
+            camion.Estado = CamionEstado.disponible;
+
+            db.SaveChanges();
+
+            return Ok(new ReposicionResumenDTO(orden, orden.PuntoVenta));
+        }
+
         #endregion
 
         protected override void Dispose(bool disposing)

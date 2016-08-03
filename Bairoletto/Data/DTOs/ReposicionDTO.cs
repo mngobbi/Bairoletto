@@ -14,6 +14,7 @@ namespace Data
         public int numero_orden { get; set; }
         public OrdenReposicionEstado estado { get; set; }
         public DateTime fecha_solicitud { get; set; }
+        public DateTime? fecha_procesada { get; set; }
         public DateTime? fecha_entrega { get; set; }
         public DateTime? fecha_entrega_estimada { get; set; }
         public DateTime? fecha_entrega_deseada { get; set; }
@@ -28,6 +29,7 @@ namespace Data
             numero_orden = rep.Numero;
             estado = rep.Estado;
             fecha_solicitud = rep.FechaSolicitud;
+            fecha_procesada = rep.FechaProcesada;
             fecha_entrega = rep.FechaEntrega;
             fecha_entrega_estimada = rep.FechaEntegaEstimada;
             fecha_entrega_deseada = rep.FechaEntregaDeseada;
@@ -67,5 +69,38 @@ namespace Data
 
         [Required]
         public ProductoReposicionNuevoDTO[] productos { get; set; }
+    }
+
+    public class ReposicionAprobarDTO
+    {
+        [Required]
+        public int reposicion_id { get; set; }
+
+        public DateTime? fecha_entrega_estimada { get; set; }
+    }
+
+    public class ReposicionRechazarDTO
+    {
+        [Required]
+        public int reposicion_id { get; set; }
+
+        public string causa_descripcion { get; set; }
+    }
+
+    public class ReposicionEnviarDTO
+    {
+        [Required]
+        public int reposicion_id { get; set; }
+
+        [Required]
+        public int camion_id { get; set; }
+    }
+
+    public class ReposicionRecepcionDTO
+    {
+        [Required]
+        public int reposicion_id { get; set; }
+
+        public string comentario { get; set; }
     }
 }
