@@ -85,6 +85,10 @@
     <Compile Include="Migrations\201607312251574_Adjustments.Designer.cs">
       <DependentUpon>201607312251574_Adjustments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608032226390_ReposicionFechaProcesada.cs" />
+    <Compile Include="Migrations\201608032226390_ReposicionFechaProcesada.Designer.cs">
+      <DependentUpon>201608032226390_ReposicionFechaProcesada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Camion.cs" />
     <Compile Include="Models\DataContext.cs" />
@@ -116,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607312251574_Adjustments.resx">
       <DependentUpon>201607312251574_Adjustments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608032226390_ReposicionFechaProcesada.resx">
+      <DependentUpon>201608032226390_ReposicionFechaProcesada.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

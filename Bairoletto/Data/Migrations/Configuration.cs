@@ -90,6 +90,11 @@ namespace Data
                 new PuntoVentaProducto { Id = 4, PuntoVentaId = 1, ProductoId = 5, Stock = 20, Precio = 17.50 },
                 new PuntoVentaProducto { Id = 5, PuntoVentaId = 1, ProductoId = 10, Stock = 15, Precio = 30 },
             });
+
+            context.Camiones.AddOrUpdate(new Camion[] {
+                new Camion { Id = 1, Numero = 45, Capacidad = 600, Patente = "UBD789"},
+                new Camion { Id = 2, Numero = 23, Capacidad = 500, Patente = "ABR154"}
+            });
         }
     }
 }
