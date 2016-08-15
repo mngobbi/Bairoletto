@@ -1,0 +1,49 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{nueva.title}}</h3>
+</div>
+<div class="modal-body" cg-busy="{promise: nueva.prom_repo, message: 'Enviando nueva orden de reposición ...'}">
+    <div class="row form-group">
+        <div class="col-sm-12">
+            <label>Fecha deseada</label>
+            <p class="input-group">
+                <input type="text" class="form-control" placeholder="dd/MM/yyyy" uib-datepicker-popup="dd/MM/yyyy" datepicker-options="nueva.date_options" ng-model="nueva.fecha_deseada" is-open="nueva.datepicker.opened" show-button-bar="false"  ng-disabled="nueva.cargando"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="nueva.open()" ng-disabled="nueva.cargando">
+                        <i class="fa fa-calendar"></i>
+                    </button>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="row form-group" cg-busy="{promise: nueva.prom_prod, message: 'Cargando productos ...'}">
+        <div class="col-sm-12">
+            <label>Productos <span class="badge">{{nueva.productos_seleccionados.length}}</span></label>
+            <ui-select multiple ng-model="nueva.productos_seleccionados" theme="bootstrap" sortable="true" ng-disabled="nueva.cargando">
+                <ui-select-match placeholder="Seleccione ...">{{$item.producto.nombre}}</ui-select-match>
+                <ui-select-choices repeat="p in nueva.productos | filter: $select.search">
+                    <div ng-bind-html="p.producto.nombre | highlight: $select.search"></div>
+                    <div><small>Stock actual: {{p.stock}}</small></div>
+                    <div><small>Código: <span ng-bind-html="''+p.producto.codigo | highlight: $select.search"></span></small></div>
+                </ui-select-choices>
+            </ui-select>
+            <br />
+            <ul>
+                <li ng-repeat="p in nueva.productos_seleccionados">
+                    <div>
+                        {{p.producto.nombre}}
+                        <a href="#" editable-number="p.cantidad_solicitada" e-min="10">{{ p.cantidad_solicitada || 'sin definir' }}</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-12">
+            <label>Comentario</label>
+            <textarea class="form-control" rows="3" ng-model="nueva.comentario" ng-disabled="nueva.cargando"></textarea>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="nueva.crear()" ng-disabled="nueva.cargando"><i class="fa fa-share-square-o"></i> Enviar orden</button>
+</div>

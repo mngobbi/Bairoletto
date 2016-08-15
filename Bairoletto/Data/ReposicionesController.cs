@@ -151,7 +151,7 @@ namespace Data
             db.OrdenesReposicion.Add(orden);
             db.SaveChanges();
 
-            return Ok(new ReposicionResumenDTO(orden, pv));
+            return Ok(new ReposicionResumenDTO(orden));
         }
 
         [Route("{id:int}/aprobar")]

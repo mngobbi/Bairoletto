@@ -22,10 +22,9 @@ namespace Data
 
         public ReposicionResumenDTO() { }
 
-        public ReposicionResumenDTO(OrdenReposicion rep, PuntoVenta pv)
+        public ReposicionResumenDTO(OrdenReposicion rep)
         {
             id = rep.Id;
-            punto_venta = new PuntoVentaResumenDTO(pv);
             numero_orden = rep.Numero;
             estado = rep.Estado;
             fecha_solicitud = rep.FechaSolicitud;
@@ -34,6 +33,11 @@ namespace Data
             fecha_entrega_estimada = rep.FechaEntegaEstimada;
             fecha_entrega_deseada = rep.FechaEntregaDeseada;
             comentario = rep.Comentario;
+        }
+
+        public ReposicionResumenDTO(OrdenReposicion rep, PuntoVenta pv) : this(rep)
+        {
+            punto_venta = new PuntoVentaResumenDTO(pv);
         }
     }
 

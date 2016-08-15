@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/sb-admin-2.css"/>
     <link rel="stylesheet" href="/css/timeline.css"/>
-    <link rel="stylesheet" href="/node_modules/angular-toastr/dist/angular-toastr.min.css" />
+    <link rel="stylesheet" href="/node_modules/angular-busy/dist/angular-busy.min.css"/>
+    <link rel="stylesheet" href="/node_modules/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" href="/node_modules/angular-xeditable/dist/css/xeditable.min.css" />
     <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/node_modules/metismenu/dist/metisMenu.min.css"/>
     <link rel="stylesheet" href="/node_modules/ui-select/dist/select.min.css" />
@@ -58,11 +60,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-truck fa-fw"></i> Ordenes de reposición<span class="fa arrow"></span></a>
-                        <!--<ul class="nav nav-second-level">
-                            <li><a href="">Ingresar producción</a></li>
-                            <li><a href="">Consultar producción</a></li>
-                        </ul>-->
+                        <a href="#/reposiciones"><i class="fa fa-truck fa-fw"></i> Ordenes de reposición</a>
                     </li>
                     <li>
                         <a href=""><i class="fa fa-shopping-cart fa-fw"></i> Productos<span class="fa arrow"></span></a>
@@ -86,8 +84,10 @@
 
     <script src="/js/sb-admin-2.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/angular-busy/dist/angular-busy.min.js"></script>
     <script src="/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
     <script src="/node_modules/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+    <script src="/node_modules/angular-xeditable/dist/js/xeditable.min.js"></script>
     <script src="/node_modules/lodash/lodash.min.js"></script>
     <script src="/node_modules/metismenu/dist/metisMenu.min.js"></script>
     <script src="/node_modules/moment/min/moment.min.js"></script>
@@ -96,6 +96,11 @@
 
     <script src="/bairoletto/puntoventa/puntoventa.module.js"></script>
     <script src="/bairoletto/puntoventa/puntoventa.config.js"></script>
+    <script src="/bairoletto/puntoventa/puntoventa.run.js"></script>
+    <script src="/bairoletto/puntoventa/puntoventa.service.js"></script>
+
+    <script src="/bairoletto/puntoventa/reposicion/reposicion.controller.js"></script>
+    <script src="/bairoletto/puntoventa/reposicion/reposicion-crear.controller.js"></script>
 
 
 </body>

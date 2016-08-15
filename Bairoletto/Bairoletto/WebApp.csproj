@@ -117,17 +117,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bairoletto\puntoventa\puntoventa.run.js" />
     <Content Include="bairoletto\puntoventa\puntoventa.config.js" />
     <Content Include="bairoletto\puntoventa\puntoventa.module.js" />
     <Content Include="bairoletto\puntoventa\puntoventa.html" />
     <Content Include="bairoletto\fabrica\reposicion\reposicion.controller.js" />
     <Content Include="bairoletto\fabrica\reposicion\reposicion.html" />
+    <Content Include="bairoletto\puntoventa\puntoventa.service.js" />
+    <Content Include="bairoletto\puntoventa\reposicion\reposicion-crear.controller.js" />
+    <Content Include="bairoletto\puntoventa\reposicion\reposicion-crear.html" />
+    <Content Include="bairoletto\puntoventa\reposicion\reposicion.controller.js" />
+    <Content Include="bairoletto\puntoventa\reposicion\reposicion.html" />
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\timeline.css" />
     <Content Include="Global.asax" />
     <Content Include="bairoletto\fabrica\fabrica.html" />
     <Content Include="js\sb-admin-2.js" />
-    <Content Include="bairoletto\fabrica\farica.module.js" />
+    <Content Include="bairoletto\fabrica\fabrica.module.js" />
     <Content Include="bairoletto\fabrica\fabrica.config.js" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />

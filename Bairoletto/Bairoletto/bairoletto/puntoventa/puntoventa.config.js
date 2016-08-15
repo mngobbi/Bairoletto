@@ -12,17 +12,17 @@
             closeButton: true,
             newestOnTop: true,
             positionClass: 'toast-top-right',
-            preventDuplicates: true,
+            preventDuplicates: false,
             preventOpenDuplicates: true,
         });
 
         // Route config
-        //$routeProvider
-        //    .when('/reposiciones', {
-        //        templateUrl: '/bairoletto/reposicion/reposicion.html',
-        //        controller: 'ReposicionController',
-        //        controllerAs: 'repos'
-        //    })
+        $routeProvider
+            .when('/reposiciones', {
+                templateUrl: '/bairoletto/puntoventa/reposicion/reposicion.html',
+                controller: 'ReposicionController',
+                controllerAs: 'repos'
+            })
     }
 
 })();
