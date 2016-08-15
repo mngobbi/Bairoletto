@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Fabrica</title>
+	<meta charset="utf-8" />
+
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/sb-admin-2.css"/>
+    <link rel="stylesheet" href="/css/timeline.css"/>
+    <link rel="stylesheet" href="/node_modules/angular-toastr/dist/angular-toastr.min.css" />
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/node_modules/metismenu/dist/metisMenu.min.css"/>
+    <link rel="stylesheet" href="/node_modules/ui-select/dist/select.min.css" />
+
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/angular/angular.min.js"></script>
+    <script src="/node_modules/angular-i18n/angular-locale_es-ar.js"></script>
+    <script src="/node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="/node_modules/angular-route/angular-route.min.js"></script>
+    <script src="/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="/node_modules/angular-busy/dist/angular-busy.min.js"></script>
+    <script src="/node_modules/angular-messages/angular-messages.min.js"></script>
+</head>
+<body ng-app="app.fabrica">
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom:0">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="fabrica.html">Bairoletto</a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href=""><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+       
+        <div class="navbar-default sidebar">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="#/reposiciones"><i class="fa fa-truck fa-fw"></i> Administración de reposiciones</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-industry fa-fw"></i> Ordenes de producción<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="">Ingresar producción</a></li>
+                            <li><a href="">Consultar producción</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-info-circle fa-fw"></i> Gestión de stock<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="">Consultar stock en fábrica</a></li>
+                            <li><a href="">Consultar en puntos de venta</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-users fa-fw"></i> Proveedores</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-line-chart fa-fw"></i> Estadísticas<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="">Ventas</a></li>
+                            <li><a href="">Producción</a></li>
+                            <li><a href="">Compras</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-shopping-cart fa-fw"></i> Productos</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-files-o fa-fw"></i> Clientes<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="">Sucursales</a></li>
+                            <li><a href="login.html">Franquicias</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/js/sb-admin-2.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script src="/node_modules/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+    <script src="/node_modules/lodash/lodash.min.js"></script>
+    <script src="/node_modules/metismenu/dist/metisMenu.min.js"></script>
+    <script src="/node_modules/moment/min/moment.min.js"></script>
+    <script src="/node_modules/moment/locale/es.js"></script>
+    <script src="/node_modules/ui-select/dist/select.min.js"></script>
+
+    <script src="/bairoletto/fabrica/farica.module.js"></script>
+    <script src="/bairoletto/fabrica/fabrica.config.js"></script>
+
+    <script src="/bairoletto/fabrica/reposicion/reposicion.controller.js"></script>
+
+</body>
+</html>

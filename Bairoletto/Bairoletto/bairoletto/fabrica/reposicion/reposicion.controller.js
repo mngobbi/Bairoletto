@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('app.fabrica')
         .controller('ReposicionController', ReposicionController);
 
     function ReposicionController() {

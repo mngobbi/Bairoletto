@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('app', [
+    angular.module('app.fabrica', [
         // Angular modules
         'ngRoute',
         'ngAnimate',

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('app.puntoventa')
         .config(config);
 
     function config(toastrConfig, $routeProvider) {
@@ -17,12 +17,12 @@
         });
 
         // Route config
-        $routeProvider
-            .when('/fabrica/reposiciones', {
-                templateUrl: '/bairoletto/reposicion/reposicion.html',
-                controller: 'ReposicionController',
-                controllerAs: 'repos'
-            })
+        //$routeProvider
+        //    .when('/reposiciones', {
+        //        templateUrl: '/bairoletto/reposicion/reposicion.html',
+        //        controller: 'ReposicionController',
+        //        controllerAs: 'repos'
+        //    })
     }
 
 })();
