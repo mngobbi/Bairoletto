@@ -98,8 +98,8 @@
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\PuntoVenta.cs" />
     <Compile Include="Models\PuntoVentaProducto.cs" />
+    <Compile Include="ProductosController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PuntosventaController.cs" />
     <Compile Include="ReposicionesController.cs" />
   </ItemGroup>
   <ItemGroup>

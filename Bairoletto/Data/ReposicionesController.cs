@@ -31,13 +31,21 @@ namespace Data
 
         [Route("nuevas")]
         [HttpGet]
-        public IHttpActionResult GetOrdenesNuevas()
+        public IHttpActionResult GetOrdenesNuevas(int? punto_venta_id = null)
         {
             var fecha_solicitud = DateTime.Today.AddMonths(-1);
 
-            OrdenReposicion[] repos = db.OrdenesReposicion.Include(x => x.PuntoVenta)
-                                                          .Where(r => r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.nueva)
-                                                          .AsNoTracking().ToArray();
+            OrdenReposicion[] repos;
+            if (punto_venta_id.HasValue)
+            {
+                repos = db.OrdenesReposicion.Where(r => r.PuntoVentaId == punto_venta_id && r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.nueva)
+                                            .AsNoTracking().ToArray();
+            } else
+            {
+                repos = db.OrdenesReposicion.Include(x => x.PuntoVenta)
+                                            .Where(r => r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.nueva)
+                                            .AsNoTracking().ToArray();
+            }
 
             if (repos.Length == 0) return Ok(new ReposicionResumenDTO[] { });
 
@@ -48,13 +56,22 @@ namespace Data
 
         [Route("aprobadas")]
         [HttpGet]
-        public IHttpActionResult GetOrdenesAprobadas()
+        public IHttpActionResult GetOrdenesAprobadas(int? punto_venta_id = null)
         {
             var fecha_solicitud = DateTime.Today.AddMonths(-1);
 
-            OrdenReposicion[] repos = db.OrdenesReposicion.Include(x => x.PuntoVenta)
-                                                          .Where(r => r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.confirmada)
-                                                          .AsNoTracking().ToArray();
+            OrdenReposicion[] repos;
+            if (punto_venta_id.HasValue)
+            {
+                repos = db.OrdenesReposicion.Where(r => r.PuntoVentaId == punto_venta_id && r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.confirmada)
+                                            .AsNoTracking().ToArray();
+            }
+            else
+            {
+                repos = db.OrdenesReposicion.Include(x => x.PuntoVenta)
+                                            .Where(r => r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.confirmada)
+                                            .AsNoTracking().ToArray();
+            }
 
             if (repos.Length == 0) return Ok(new ReposicionResumenDTO[] { });
 
@@ -65,13 +82,22 @@ namespace Data
 
         [Route("canceladas")]
         [HttpGet]
-        public IHttpActionResult GetOrdenesCanceladas()
+        public IHttpActionResult GetOrdenesCanceladas(int? punto_venta_id = null)
         {
             var fecha_solicitud = DateTime.Today.AddMonths(-1);
 
-            OrdenReposicion[] repos = db.OrdenesReposicion.Include(x => x.PuntoVenta)
-                                                          .Where(r => r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.cancelada)
-                                                          .AsNoTracking().ToArray();
+            OrdenReposicion[] repos;
+            if (punto_venta_id.HasValue)
+            {
+                repos = db.OrdenesReposicion.Where(r => r.PuntoVentaId == punto_venta_id && r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.cancelada)
+                                            .AsNoTracking().ToArray();
+            }
+            else
+            {
+                repos = db.OrdenesReposicion.Include(x => x.PuntoVenta)
+                                            .Where(r => r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.cancelada)
+                                            .AsNoTracking().ToArray();
+            }
 
             if (repos.Length == 0) return Ok(new ReposicionResumenDTO[] { });
 
@@ -82,13 +108,22 @@ namespace Data
 
         [Route("entransito")]
         [HttpGet]
-        public IHttpActionResult GetOrdenesEntransito()
+        public IHttpActionResult GetOrdenesEntransito(int? punto_venta_id = null)
         {
             var fecha_solicitud = DateTime.Today.AddMonths(-1);
 
-            OrdenReposicion[] repos = db.OrdenesReposicion.Include(x => x.PuntoVenta)
-                                                          .Where(r => r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.en_transito)
-                                                          .AsNoTracking().ToArray();
+            OrdenReposicion[] repos;
+            if (punto_venta_id.HasValue)
+            {
+                repos = db.OrdenesReposicion.Where(r => r.PuntoVentaId == punto_venta_id && r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.en_transito)
+                                            .AsNoTracking().ToArray();
+            }
+            else
+            {
+                repos = db.OrdenesReposicion.Include(x => x.PuntoVenta)
+                                            .Where(r => r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.en_transito)
+                                            .AsNoTracking().ToArray();
+            }
 
             if (repos.Length == 0) return Ok(new ReposicionResumenDTO[] { });
 
@@ -99,13 +134,22 @@ namespace Data
 
         [Route("entregadas")]
         [HttpGet]
-        public IHttpActionResult GetOrdenesEntregas()
+        public IHttpActionResult GetOrdenesEntregas(int? punto_venta_id = null)
         {
             var fecha_solicitud = DateTime.Today.AddMonths(-1);
 
-            OrdenReposicion[] repos = db.OrdenesReposicion.Include(x => x.PuntoVenta)
-                                                          .Where(r => r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.entregada)
-                                                          .AsNoTracking().ToArray();
+            OrdenReposicion[] repos;
+            if (punto_venta_id.HasValue)
+            {
+                repos = db.OrdenesReposicion.Where(r => r.PuntoVentaId == punto_venta_id && r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.entregada)
+                                            .AsNoTracking().ToArray();
+            }
+            else
+            {
+                repos = db.OrdenesReposicion.Include(x => x.PuntoVenta)
+                                            .Where(r => r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.entregada)
+                                            .AsNoTracking().ToArray();
+            }
 
             if (repos.Length == 0) return Ok(new ReposicionResumenDTO[] { });
 
@@ -164,7 +208,7 @@ namespace Data
             OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
             if (orden == null) return NotFound();
 
-            orden.FechaProcesada = DateTime.Now;
+            orden.FechaProcesada = DateTime.UtcNow;
             orden.FechaEntegaEstimada = aprobar.fecha_entrega_estimada;
             orden.Estado = OrdenReposicionEstado.confirmada;
 
@@ -183,7 +227,7 @@ namespace Data
             OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
             if (orden == null) return NotFound();
 
-            orden.FechaProcesada = DateTime.Now;
+            orden.FechaProcesada = DateTime.UtcNow;
             orden.Estado = OrdenReposicionEstado.cancelada;
 
             db.SaveChanges();
@@ -226,7 +270,7 @@ namespace Data
 
             Camion camion = db.Camiones.Where(x => x.Id == orden.CamionId).FirstOrDefault();
 
-            orden.FechaEntrega = DateTime.Now;
+            orden.FechaEntrega = DateTime.UtcNow;
             orden.Estado = OrdenReposicionEstado.entregada;
 
             camion.Estado = CamionEstado.disponible;

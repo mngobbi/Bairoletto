@@ -19,6 +19,7 @@ namespace Data
         {
             OrdenesReposicion = new HashSet<OrdenReposicion>();
             Productos = new HashSet<PuntoVentaProducto>();
+            Usuarios = new HashSet<Usuario>();
         }
 
         public int Id { get; set; }
@@ -62,6 +63,8 @@ namespace Data
         public virtual ICollection<OrdenReposicion> OrdenesReposicion { get; set; }
 
         public virtual ICollection<PuntoVentaProducto> Productos { get; set; }
+
+        public virtual ICollection<Usuario> Usuarios { get; set; }
 
         public virtual PlantaElaboracion PlantaElaboracion { get; set; }
     }

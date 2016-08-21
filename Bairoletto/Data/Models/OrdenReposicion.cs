@@ -22,7 +22,7 @@ namespace Data
         public OrdenReposicion()
         {
             Numero = new Random().Next(99999999);
-            FechaSolicitud = DateTime.Now;
+            FechaSolicitud = DateTime.UtcNow;
             Estado = OrdenReposicionEstado.nueva;
             Productos = new HashSet<OrdenReposicionDetalle>();
         }
