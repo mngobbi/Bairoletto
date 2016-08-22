@@ -92,12 +92,16 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Camion.cs" />
     <Compile Include="Models\DataContext.cs" />
+    <Compile Include="Models\Evento.cs" />
+    <Compile Include="Models\EventoPublico.cs" />
     <Compile Include="Models\OrdenReposicion.cs" />
     <Compile Include="Models\OrdenReposicionDetalle.cs" />
+    <Compile Include="Models\OrdenReposicionEvento.cs" />
     <Compile Include="Models\PlantaElaboracion.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\PuntoVenta.cs" />
     <Compile Include="Models\PuntoVentaProducto.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="ProductosController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReposicionesController.cs" />
