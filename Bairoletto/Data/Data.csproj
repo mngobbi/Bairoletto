@@ -97,6 +97,10 @@
     <Compile Include="Models\OrdenReposicion.cs" />
     <Compile Include="Models\OrdenReposicionDetalle.cs" />
     <Compile Include="Models\OrdenReposicionEvento.cs" />
+    <Compile Include="Models\OrdenReposicionEventoRecepcion.cs" />
+    <Compile Include="Models\OrdenReposicionEventoCancelacion.cs" />
+    <Compile Include="Models\OrdenReposicionEventoConfirmacion.cs" />
+    <Compile Include="Models\OrdenReposicionEventoEnTransito.cs" />
     <Compile Include="Models\PlantaElaboracion.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\PuntoVenta.cs" />

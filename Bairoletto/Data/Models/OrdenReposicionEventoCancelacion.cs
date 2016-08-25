@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data
 {
@@ -26,17 +22,17 @@ namespace Data
         {
             get
             {
-                return "Orden de reposición cancelada: "; 
+                return "Orden de reposición cancelada";
             }
         }
 
-        //public OrdenReposicionCancelacionCausa Causa
-        //{
-        //    get
-        //    {
-        //        return Enum.Parse(typeof(OrdenReposicionCancelacionCausa), evento.IndexedString);
-        //    }
-        //}
+        public OrdenReposicionCancelacionCausa Causa
+        {
+            get
+            {
+                return (OrdenReposicionCancelacionCausa)Enum.Parse(typeof(OrdenReposicionCancelacionCausa), evento.IndexedString);
+            }
+        }
 
         public OrdenReposicionEventoCancelacion(OrdenReposicionEvento ev) : base(ev)
         {

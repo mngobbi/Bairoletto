@@ -21,9 +21,14 @@ namespace Data
             Fecha = DateTime.UtcNow;
         }
 
+        public OrdenReposicionEvento(Evento ev)
+        {
+
+        }
+
         public OrdenReposicionEvento(OrdenReposicion r, OrdenReposicionEventoTipo tipo_evento, int usuario_id, string comentario = null) : this()
         {
-            Tipo = Convert.ToInt32(tipo_evento);
+            Tipo = (int)tipo_evento;
             OrdenReposicionId = r.Id;
             OrdenReposicion = r;
             UsuarioId = usuario_id;
