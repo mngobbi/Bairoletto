@@ -25,6 +25,7 @@ namespace Data
             FechaSolicitud = DateTime.UtcNow;
             Estado = OrdenReposicionEstado.nueva;
             Productos = new HashSet<OrdenReposicionDetalle>();
+            Eventos = new HashSet<OrdenReposicionEvento>();
         }
 
         public int Id { get; set; }
@@ -56,6 +57,8 @@ namespace Data
         [MaxLength(255)]
         public string Comentario { get; set; }
 
+        public virtual ICollection<OrdenReposicionEvento> Eventos { get; set; }
+
         public virtual ICollection<OrdenReposicionDetalle> Productos { get; set; }
 
         public virtual PuntoVenta PuntoVenta { get; set; }
@@ -63,5 +66,29 @@ namespace Data
         public virtual PlantaElaboracion PlantaElaboracion { get; set; }
 
         public virtual Camion Camion { get; set; }
+
+        public IEnumerable<IEventoPublico> GetEventosPublicos()
+        {
+            var pubs = new List<IEventoPublico>();
+
+            foreach (OrdenReposicionEvento ev in Eventos) {
+                switch (ev.Tipo)
+                {
+                    case (int)OrdenReposicionEventoTipo.confirmacion:
+                        pubs.Add(new OrdenReposicionEventoConfirmacion(ev));
+                        break;
+                    case (int)OrdenReposicionEventoTipo.en_transito:
+                        pubs.Add(new OrdenReposicionEventoEnTransito(ev));
+                        break;
+                    case (int)OrdenReposicionEventoTipo.cancelacion:
+                        pubs.Add(new OrdenReposicionEventoCancelacion(ev));
+                        break;
+                    case (int)OrdenReposicionEventoTipo.recepcion:
+                        pubs.Add(new OrdenReposicionEventoRecepcion(ev));
+                        break;
+                }
+            }
+            return pubs;
+        }
     }
 }
