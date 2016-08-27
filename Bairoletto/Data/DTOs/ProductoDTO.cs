@@ -9,6 +9,7 @@ namespace Data
         public string nombre { get; set; }
         public string codigo { get; set; }
         public string descripcion { get; set; }
+        public int? stock { get; set; }
         public double precio_costo { get; set; }
         public string foto { get; set; }
 
@@ -21,6 +22,7 @@ namespace Data
             nombre = p.Nombre;
             codigo = p.Codigo;
             descripcion = p.Descripcion;
+            stock = p.Stock;
             precio_costo = p.PrecioCosto;
             foto = p.Foto;
         }

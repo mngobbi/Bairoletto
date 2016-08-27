@@ -39,6 +39,8 @@ namespace Data
         [Required]
         public double PrecioCosto { get; set; }
 
+        public int? Stock { get; set; }
+
         public string Foto { get; set; }
 
         public virtual ICollection<OrdenReposicionDetalle> OrdenesReposicion { get; set; }
