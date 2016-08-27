@@ -5,18 +5,8 @@
         .module('app.puntoventa')
         .config(config);
 
-    function config(toastrConfig, $routeProvider) {
-
-        // Toastr config
-        angular.extend(toastrConfig, {
-            closeButton: true,
-            newestOnTop: true,
-            positionClass: 'toast-top-right',
-            preventDuplicates: false,
-            preventOpenDuplicates: true,
-        });
-
-        // Route config
+    function config($routeProvider) {
+       
         $routeProvider
             .when('/reposiciones', {
                 templateUrl: '/bairoletto/puntoventa/reposicion/reposicion.html',

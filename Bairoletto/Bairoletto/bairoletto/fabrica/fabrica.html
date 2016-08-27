@@ -4,12 +4,14 @@
     <title>Fabrica</title>
 	<meta charset="utf-8" />
 
-    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/sb-admin-2.css"/>
-    <link rel="stylesheet" href="/css/timeline.css"/>
-    <link rel="stylesheet" href="/node_modules/angular-toastr/dist/angular-toastr.min.css" />
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/sb-admin-2.css" />
+    <link rel="stylesheet" href="/css/timeline.css" />
+    <link rel="stylesheet" href="/node_modules/angular-busy/dist/angular-busy.min.css" />
+    <link rel="stylesheet" href="/node_modules/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" href="/node_modules/angular-xeditable/dist/css/xeditable.min.css" />
     <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/node_modules/metismenu/dist/metisMenu.min.css"/>
+    <link rel="stylesheet" href="/node_modules/metismenu/dist/metisMenu.min.css" />
     <link rel="stylesheet" href="/node_modules/ui-select/dist/select.min.css" />
 
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
@@ -99,22 +101,30 @@
         </div>
     </div>
 
-
-
     <script src="/js/sb-admin-2.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/angular-busy/dist/angular-busy.min.js"></script>
     <script src="/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
     <script src="/node_modules/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+    <script src="/node_modules/angular-xeditable/dist/js/xeditable.min.js"></script>
     <script src="/node_modules/lodash/lodash.min.js"></script>
     <script src="/node_modules/metismenu/dist/metisMenu.min.js"></script>
     <script src="/node_modules/moment/min/moment.min.js"></script>
     <script src="/node_modules/moment/locale/es.js"></script>
     <script src="/node_modules/ui-select/dist/select.min.js"></script>
 
-    <script src="/bairoletto/fabrica/farica.module.js"></script>
+
+    <script src="/bairoletto/core/core.module.js"></script>
+    <script src="/bairoletto/core/core.config.js"></script>
+    <script src="/bairoletto/core/core.run.js"></script>
+    <script src="/bairoletto/core/producto/producto.service.js"></script>
+    <script src="/bairoletto/core/reposicion/reposicion.service.js"></script>
+
+    <script src="/bairoletto/fabrica/fabrica.module.js"></script>
     <script src="/bairoletto/fabrica/fabrica.config.js"></script>
 
     <script src="/bairoletto/fabrica/reposicion/reposicion.controller.js"></script>
+    <script src="/bairoletto/fabrica/camion/camion.service.js"></script>
 
 </body>
 </html>

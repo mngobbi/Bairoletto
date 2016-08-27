@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.puntoventa')
+        .module('app.core')
         .run(run);
 
     function run(editableOptions) {
