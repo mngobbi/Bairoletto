@@ -21,7 +21,7 @@ namespace Data
 
         }
 
-        public OrdenReposicionEventoRecepcion(OrdenReposicion r, DateTime fecha, int usuario_id, string comentario = null) : base()
+        public OrdenReposicionEventoRecepcion(OrdenReposicion r, DateTime? fecha, int usuario_id, string comentario = null) : base()
         {
             evento = new OrdenReposicionEvento(r, OrdenReposicionEventoTipo.recepcion, usuario_id, comentario);
             evento.IndexedDateTime = fecha;

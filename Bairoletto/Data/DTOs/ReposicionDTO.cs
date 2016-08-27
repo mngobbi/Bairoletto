@@ -88,7 +88,10 @@ namespace Data
         [Required]
         public int reposicion_id { get; set; }
 
-        public string causa_descripcion { get; set; }
+        [Required]
+        public OrdenReposicionCancelacionCausa causa { get; set; }
+
+        public string comentario { get; set; }
     }
 
     public class ReposicionEnviarDTO

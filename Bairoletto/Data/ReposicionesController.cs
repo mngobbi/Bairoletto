@@ -12,6 +12,7 @@ namespace Data
     [RoutePrefix("api/reposiciones")]
     public class ReposicionesController : ApiController
     {
+        private int usuario_id = 3;
         private DataContext db = new DataContext();
 
         #region "GETTERS"
@@ -207,6 +208,10 @@ namespace Data
 
             OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
             if (orden == null) return NotFound();
+            if (orden.Estado != OrdenReposicionEstado.nueva) return BadRequest("La orden de reposición ya fue procesada");
+
+            var ev = new OrdenReposicionEventoConfirmacion(orden, usuario_id);
+            db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             orden.FechaProcesada = DateTime.UtcNow;
             orden.FechaEntegaEstimada = aprobar.fecha_entrega_estimada;
@@ -226,6 +231,10 @@ namespace Data
 
             OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
             if (orden == null) return NotFound();
+            if (orden.Estado != OrdenReposicionEstado.nueva) return BadRequest("La orden de reposición ya fue procesada");
+
+            var ev = new OrdenReposicionEventoCancelacion(orden, rechazar.causa, usuario_id, rechazar.comentario);
+            db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             orden.FechaProcesada = DateTime.UtcNow;
             orden.Estado = OrdenReposicionEstado.cancelada;
@@ -244,9 +253,13 @@ namespace Data
 
             OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
             if (orden == null) return NotFound();
+            if (orden.Estado != OrdenReposicionEstado.confirmada) return BadRequest("La orden de reposición se encuentra en el estado incorrecto");
 
             Camion camion = db.Camiones.Where(x => x.Id == enviar.camion_id && x.Estado == CamionEstado.disponible).FirstOrDefault();
             if (camion == null) return NotFound();
+
+            var ev = new OrdenReposicionEventoEnTransito(orden, camion.Numero, usuario_id);
+            db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             orden.CamionId = camion.Id;
             orden.Estado = OrdenReposicionEstado.en_transito;
@@ -267,13 +280,18 @@ namespace Data
 
             OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
             if (orden == null) return NotFound();
+            if (orden.Estado != OrdenReposicionEstado.en_transito) return BadRequest("La orden de reposición se encuentra en el estado incorrecto");
 
             Camion camion = db.Camiones.Where(x => x.Id == orden.CamionId).FirstOrDefault();
+            if (camion == null) return NotFound();
 
             orden.FechaEntrega = DateTime.UtcNow;
             orden.Estado = OrdenReposicionEstado.entregada;
 
             camion.Estado = CamionEstado.disponible;
+
+            var ev = new OrdenReposicionEventoRecepcion(orden, orden.FechaEntrega, usuario_id, recepcion.comentario);
+            db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             db.SaveChanges();
 

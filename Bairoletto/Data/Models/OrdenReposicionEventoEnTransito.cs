@@ -6,7 +6,7 @@
         {
             get
             {
-                return "Orden de reposición en tránsito";
+                return "Orden de reposición en tránsito. Camión de entrega número " + evento.IndexedString;
             }
         }
 
@@ -15,9 +15,10 @@
 
         }
 
-        public OrdenReposicionEventoEnTransito(OrdenReposicion r, int usuario_id, string comentario = null) : base()
+        public OrdenReposicionEventoEnTransito(OrdenReposicion r, int camion, int usuario_id, string comentario = null) : base()
         {
             evento = new OrdenReposicionEvento(r, OrdenReposicionEventoTipo.en_transito, usuario_id, comentario);
+            evento.IndexedString = camion.ToString();
         }
     }
 }
