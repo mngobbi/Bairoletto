@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -17,6 +14,30 @@ namespace Data
 
         #region "GETTERS"
         
+        [Route("")]
+        [HttpGet]
+        public IHttpActionResult GetOrdenes(int? punto_venta_id = null)
+        {
+            var fecha_solicitud = DateTime.Today.AddMonths(-1);
+
+            OrdenReposicion[] ordenes;
+            if (punto_venta_id != null)
+            {
+                ordenes = db.OrdenesReposicion.Where(r => r.PuntoVentaId == punto_venta_id && r.FechaSolicitud > fecha_solicitud)
+                                              .AsNoTracking().ToArray();
+            }
+            else
+            {
+                ordenes = db.OrdenesReposicion.Where(r => r.FechaSolicitud > fecha_solicitud).AsNoTracking().ToArray();
+            }
+
+            if (ordenes.Length == 0) return Ok(new ReposicionResumenDTO[] { });
+
+            var dtos = ordenes.Select(x => new ReposicionResumenDTO(x)).ToArray();
+
+            return Ok(dtos);
+        }
+
         [Route("{id:int}")]
         [HttpGet]
         public IHttpActionResult GetOrden(int id)
@@ -37,7 +58,7 @@ namespace Data
             var fecha_solicitud = DateTime.Today.AddMonths(-1);
 
             OrdenReposicion[] repos;
-            if (punto_venta_id.HasValue)
+            if (punto_venta_id != null)
             {
                 repos = db.OrdenesReposicion.Where(r => r.PuntoVentaId == punto_venta_id && r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.nueva)
                                             .AsNoTracking().ToArray();
@@ -62,7 +83,7 @@ namespace Data
             var fecha_solicitud = DateTime.Today.AddMonths(-1);
 
             OrdenReposicion[] repos;
-            if (punto_venta_id.HasValue)
+            if (punto_venta_id != null)
             {
                 repos = db.OrdenesReposicion.Where(r => r.PuntoVentaId == punto_venta_id && r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.confirmada)
                                             .AsNoTracking().ToArray();
@@ -88,7 +109,7 @@ namespace Data
             var fecha_solicitud = DateTime.Today.AddMonths(-1);
 
             OrdenReposicion[] repos;
-            if (punto_venta_id.HasValue)
+            if (punto_venta_id != null)
             {
                 repos = db.OrdenesReposicion.Where(r => r.PuntoVentaId == punto_venta_id && r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.cancelada)
                                             .AsNoTracking().ToArray();
@@ -114,7 +135,7 @@ namespace Data
             var fecha_solicitud = DateTime.Today.AddMonths(-1);
 
             OrdenReposicion[] repos;
-            if (punto_venta_id.HasValue)
+            if (punto_venta_id != null)
             {
                 repos = db.OrdenesReposicion.Where(r => r.PuntoVentaId == punto_venta_id && r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.en_transito)
                                             .AsNoTracking().ToArray();
@@ -140,7 +161,7 @@ namespace Data
             var fecha_solicitud = DateTime.Today.AddMonths(-1);
 
             OrdenReposicion[] repos;
-            if (punto_venta_id.HasValue)
+            if (punto_venta_id != null)
             {
                 repos = db.OrdenesReposicion.Where(r => r.PuntoVentaId == punto_venta_id && r.FechaSolicitud > fecha_solicitud && r.Estado == OrdenReposicionEstado.entregada)
                                             .AsNoTracking().ToArray();
