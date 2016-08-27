@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data
 {
@@ -45,15 +42,18 @@ namespace Data
     {
         public ProductoReposicionDTO[] productos { get; set; }
         public CamionDTO camion_asignado { get; set; }
+        public EventoDTO[] eventos { get; set; }
 
         public ReposicionDTO()
         {
             productos = new ProductoReposicionDTO[] { };
+            eventos = new EventoDTO[] { };
         }
 
         public ReposicionDTO(OrdenReposicion rep, PuntoVenta pv, OrdenReposicionDetalle[] prod, Camion cam) : base(rep, pv)
         {
             productos = prod.Select(x => new ProductoReposicionDTO(x, x.Producto)).ToArray();
+            eventos = rep.GetEventosPublicos().Select(x => new EventoDTO(x)).ToArray();
             if (cam != null) camion_asignado = new CamionDTO(cam);
         }
     }
