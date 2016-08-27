@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CamionesController.cs" />
     <Compile Include="DTOs\CamionDTO.cs" />
     <Compile Include="DTOs\EventoDTO.cs" />
     <Compile Include="DTOs\ProductoDTO.cs" />
