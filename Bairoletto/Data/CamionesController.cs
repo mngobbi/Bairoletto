@@ -4,7 +4,7 @@ using System.Web.Http;
 
 namespace Data
 {
-    [RoutePrefix("api/productos")]
+    [RoutePrefix("api/camiones")]
     public class CamionesController : ApiController
     {
         private DataContext db = new DataContext();

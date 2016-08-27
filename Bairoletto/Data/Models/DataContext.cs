@@ -6,7 +6,7 @@ namespace Data
     {
         public DataContext() : base("name=BairolettoAppDB")
         {
-            //Database.SetInitializer(new DropCreateDatabaseAlways<TrainingAppContext>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways<DataContext>());
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataContext, Configuration>("BairolettoAppDB"));
         }
 
