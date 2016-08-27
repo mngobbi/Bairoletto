@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data
 {
     public enum UsuarioRoles
     {
-
+        administrador = 1,
+        gerente = 3,
+        jefe_fabrica = 5,
+        encargado_punto_venta = 7,
+        vendedor = 9
     }
 
     [Table("Usuarios")]

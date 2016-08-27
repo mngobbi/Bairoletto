@@ -66,9 +66,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\CamionDTO.cs" />
+    <Compile Include="DTOs\EventoDTO.cs" />
     <Compile Include="DTOs\ProductoDTO.cs" />
     <Compile Include="DTOs\PuntoVentaDTO.cs" />
     <Compile Include="DTOs\ReposicionDTO.cs" />
+    <Compile Include="DTOs\UsuarioDTO.cs" />
     <Compile Include="Migrations\201607302316529_Initial.cs" />
     <Compile Include="Migrations\201607302316529_Initial.Designer.cs">
       <DependentUpon>201607302316529_Initial.cs</DependentUpon>
@@ -88,6 +90,10 @@
     <Compile Include="Migrations\201608032226390_ReposicionFechaProcesada.cs" />
     <Compile Include="Migrations\201608032226390_ReposicionFechaProcesada.Designer.cs">
       <DependentUpon>201608032226390_ReposicionFechaProcesada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608271938388_eventoUsuario.cs" />
+    <Compile Include="Migrations\201608271938388_eventoUsuario.Designer.cs">
+      <DependentUpon>201608271938388_eventoUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Camion.cs" />
@@ -132,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608032226390_ReposicionFechaProcesada.resx">
       <DependentUpon>201608032226390_ReposicionFechaProcesada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608271938388_eventoUsuario.resx">
+      <DependentUpon>201608271938388_eventoUsuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

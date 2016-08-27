@@ -14,6 +14,12 @@ namespace Data
 
         protected override void Seed(Data.DataContext context)
         {
+            context.Usuarios.AddOrUpdate(new Usuario[] {
+                new Usuario { Id = 1, PlantaElaboracionId = 1, Nombre = "Cristian Rodriguez", NombreUsuario = "ADM-Cristian Rodriguez", Puesto = "Administrador", Rol = UsuarioRoles.administrador, Email = "crodriguez@bairoletto.com", Telefono = "(9298)458-3256", Ciudad = "General Roca", Provincia = "Rio Negro", Pais = "Argentina"},
+                new Usuario { Id = 2, PlantaElaboracionId = 1, Nombre = "Emiliano Rigoni", NombreUsuario = "JF-Emiliano Rigoni", Puesto = "Jefe de Fábrica", Rol = UsuarioRoles.jefe_fabrica, Email = "erigoni@bairoletto.com", Telefono = "(9298)789-4522", Ciudad = "General Roca", Provincia = "Rio Negro", Pais = "Argentina"},
+                new Usuario { Id = 3, PuntoVentaId = 1, Nombre = "Nicolas Tagliafico", NombreUsuario = "ADM-Nicolas Tagliafico", Puesto = "Encargado Sucursal", Rol = UsuarioRoles.encargado_punto_venta, Email = "ntagliafico@bairoletto.com", Telefono = "(9298)699-4533", Ciudad = "General Roca", Provincia = "Rio Negro", Pais = "Argentina"}
+            });
+
             context.PlantasElaboracion.AddOrUpdate(
                 new PlantaElaboracion {
                     Id = 1,
