@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Description;
 
 namespace Data
 {
@@ -18,25 +13,38 @@ namespace Data
         [HttpGet]
         public IHttpActionResult GetProductos(int? punto_venta_id = null)
         {
-            PuntoVentaProducto[] productos;
-            if (punto_venta_id.HasValue)
+            if (punto_venta_id != null)
             {
-                productos = db.PuntosVentaProductos.Include(p => p.Producto)
-                                                                    .Where(p => p.PuntoVentaId == punto_venta_id)
-                                                                    .AsNoTracking().ToArray();
-            } else
-            {
-                productos = db.PuntosVentaProductos.Include(p => p.Producto)
-                                                                    .AsNoTracking().ToArray();
+                PuntoVentaProducto[] productos = db.PuntosVentaProductos.Include(p => p.Producto)
+                                                   .Where(p => p.PuntoVentaId == punto_venta_id)
+                                                   .AsNoTracking().ToArray();
+                if (productos.Length == 0) return Ok(new ProductoPuntoVentaDTO[] { });
+                var dtos = productos.Select(p => new ProductoPuntoVentaDTO(p, p.Producto)).ToArray();
+
+                return Ok(dtos);
             }
-            
-            if (productos.Length == 0) return Ok(new ProductoPuntoVentaDTO[] { });
+            else
+            {
+                Producto[] productos = db.Productos.AsNoTracking().ToArray();
+                if (productos.Length == 0) return Ok(new ProductoPuntoVentaDTO[] { });
+                var dtos = productos.Select(p => new ProductoDTO(p)).ToArray();
 
-            ProductoPuntoVentaDTO[] dtos = productos.Select(p => new ProductoPuntoVentaDTO(p, p.Producto)).ToArray();
 
-            return Ok(dtos);
+                return Ok(dtos);
+            }          
         }
 
+        [Route("{id:int}")]
+        [HttpGet]
+        public IHttpActionResult GetProducto(int id)
+        {
+            Producto producto = db.Productos.Where(p => p.Id == id).AsNoTracking().FirstOrDefault();
+            if (producto == null) return NotFound();
+
+            var dto = new ProductoDTO(producto);
+
+            return Ok(dto);
+        }
 
         protected override void Dispose(bool disposing)
         {
