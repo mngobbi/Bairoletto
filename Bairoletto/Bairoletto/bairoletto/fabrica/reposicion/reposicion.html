@@ -2,54 +2,73 @@
     <h1>Órdenes de reposición</h1>
 </div>
 <div class="row">
-    <div class="col-lg-6">
-        <div class="panel">
-            <div class="panel-heading" style="background-color:#55b380;color:white">
+    <div class="col-lg-3">
+        <div class="panel" ng-class="{'bai-light-green': !repos.panel_nuevas.loading, 'bai-light-grey': repos.panel_nuevas.loading}" style="cursor:pointer" ng-click="repos.abrirPanel('nuevas')">
+            <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-3"><i class="fa fa-bell-o fa-5x"></i></div>
                     <div class="col-xs-9 text-right">
-                        <div style="font-size:45px">2</div>
+                        <div style="font-size:45px">
+                            <span ng-if="!repos.panel_nuevas.loading">{{repos.panel_nuevas.total}}</span>
+                            <i ng-if="repos.panel_nuevas.loading" class="fa fa-spinner fa-spin"></i>
+                        </div>
                         <div style="font-size:20px">Nuevas</div>
                     </div>
-                </div>             
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="panel">
-            <div class="panel-heading" style="background-color:#479390;color:white">
+        <div class="hidden-lg" ng-if="repos.panel_nuevas.open">
+            <div ng-include="'/bairoletto/fabrica/reposicion/paneles/reposicion-nuevas.html'"></div>
+        </div>
+    </div>  
+
+    <div class="col-lg-3">
+        <div class="panel" ng-class="{'bai-blue-green': !repos.panel_aprobadas.loading, 'bai-light-grey': repos.panel_aprobadas.loading}" style="cursor:pointer" ng-click="repos.abrirPanel('aprobadas')">
+            <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-3"><i class="fa fa-thumbs-o-up fa-5x"></i></div>
                     <div class="col-xs-9 text-right">
-                        <div style="font-size:45px">12</div>
+                        <div style="font-size:45px">
+                            <span ng-if="!repos.panel_aprobadas.loading">{{repos.panel_aprobadas.total}}</span>
+                            <i ng-if="repos.panel_aprobadas.loading" class="fa fa-spinner fa-spin "></i>
+                        </div>
                         <div style="font-size:20px">Aprobadas</div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="hidden-lg" ng-if="repos.panel_aprobadas.open">
+            <div ng-include="'/bairoletto/fabrica/reposicion/paneles/reposicion-aprobadas.html'"></div>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-lg-6">
-        <div class="panel">
-            <div class="panel-heading" style="background-color:#0f6d6f;color:white">
+
+    <div class="col-lg-3">
+        <div class="panel" ng-class="{'bai-dark-blue-green': !repos.panel_en_transito.loading, 'bai-light-grey': repos.panel_en_transito.loading}" style="cursor:pointer">
+            <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-3"><i class="fa fa-truck fa-5x"></i></div>
                     <div class="col-xs-9 text-right">
-                        <div style="font-size:45px">25</div>
+                        <div style="font-size:45px">
+                            <span ng-if="!repos.panel_en_transito.loading">{{repos.panel_en_transito.total}}</span>
+                            <i ng-if="repos.panel_en_transito.loading" class="fa fa-spinner fa-spin "></i>
+                        </div>
                         <div style="font-size:20px">En tránsito</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="panel">
-            <div class="panel-heading" style="background-color:#053c3d;color:white">
+
+    <div class="col-lg-3">
+        <div class="panel" ng-class="{'bai-dark-green': !repos.panel_finalizadas.loading, 'bai-light-grey': repos.panel_finalizadas.loading}" style="cursor:pointer">
+            <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-3"><i class="fa fa-clock-o fa-5x"></i></div>
                     <div class="col-xs-9 text-right">
-                        <div style="font-size:45px">16</div>
+                        <div style="font-size:45px">
+                            <span ng-if="!repos.panel_finalizadas.loading">{{repos.panel_finalizadas.total}}</span>
+                            <i ng-if="repos.panel_finalizadas.loading" class="fa fa-spinner fa-spin "></i>
+                        </div>
                         <div style="font-size:20px">Finalizadas</div>
                     </div>
                 </div>
@@ -57,3 +76,14 @@
         </div>
     </div>
 </div>
+<div class="row visible-lg-block">
+    <div class="col-lg-6" ng-if="repos.panel_nuevas.open">
+        <div ng-include="'/bairoletto/fabrica/reposicion/paneles/reposicion-nuevas.html'"></div>
+    </div>
+    <div class="col-lg-6" ng-if="repos.panel_aprobadas.open">
+        <div ng-include="'/bairoletto/fabrica/reposicion/paneles/reposicion-aprobadas.html'"></div>
+    </div>
+</div>
+
+
+

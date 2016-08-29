@@ -5,7 +5,9 @@
         .module('app.core')
         .config(config);
 
-    function config(toastrConfig) {
+    function config($animateProvider, toastrConfig) {
+
+        $animateProvider.classNameFilter(/animate-|ui-select-/);
 
         // Toastr config
         angular.extend(toastrConfig, {
