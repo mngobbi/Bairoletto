@@ -1,0 +1,36 @@
+﻿<div class="list-group">
+    <div ng-repeat="pv in repos.panel_aprobadas.data">
+        <bai-panel-inside bai-main-color="'bai-blue-green'" bai-opened-color="'#47938f'" bai-open="pv.open" ng-click="pv.open = !pv.open">
+            <bai-info>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1">
+                        <span class="badge" ng-class="{'bai-badge-close': !pv.open, 'bai-blue-green': pv.open}">{{pv.reposiciones.length}}</span>
+                    </div>
+                    <div class="col-xs-4 col-md-3">{{pv.codigo}}</div>
+                    <div class="col-xs-6 col-md-8">{{pv.nombre}}</div>
+                </div>
+            </bai-info>
+        </bai-panel-inside>
+        <div uib-collapse="!pv.open">
+            <div class="list-group">
+                <div class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-4"><b>#</b></div>
+                        <div class="col-xs-4"><b>Fecha de solicitud</b></div>
+                        <div class="col-xs-4"><b>Fecha deseada de entrega</b></div>
+                    </div>
+                </div>
+                <div class="list-group-item" ng-repeat="r in pv.reposiciones" ng-click="repos.reposicionDetalle(r.id)">
+                    <div class="row">
+                        <div class="col-xs-4">{{r.numero_orden}}</div>
+                        <div class="col-xs-4">{{r.fecha_solicitud | date: 'dd/MM/yyyy HH:mm'}}</div>
+                        <div class="col-xs-4">
+                            <span ng-if="r.fecha_entrega_deseada">{{r.fecha_entrega_deseada | date: 'dd/MM/yyyy'}}</span>
+                            <span ng-if="!r.fecha_entrega_deseada">Sin definir</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
