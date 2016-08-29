@@ -95,6 +95,11 @@ namespace Data
                 new PuntoVentaProducto { Id = 3, PuntoVentaId = 1, ProductoId = 4, Stock = 10, Precio = 17.50 },
                 new PuntoVentaProducto { Id = 4, PuntoVentaId = 1, ProductoId = 5, Stock = 20, Precio = 17.50 },
                 new PuntoVentaProducto { Id = 5, PuntoVentaId = 1, ProductoId = 10, Stock = 15, Precio = 30 },
+                new PuntoVentaProducto { Id = 6, PuntoVentaId = 2, ProductoId = 1, Stock = 54, Precio = 18.50 },
+                new PuntoVentaProducto { Id = 7, PuntoVentaId = 2, ProductoId = 2, Stock = 48, Precio = 18.50 },
+                new PuntoVentaProducto { Id = 8, PuntoVentaId = 2, ProductoId = 4, Stock = 25, Precio = 18.50 },
+                new PuntoVentaProducto { Id = 9, PuntoVentaId = 2, ProductoId = 7, Stock = 34, Precio = 40.25 },
+                new PuntoVentaProducto { Id = 10, PuntoVentaId = 2, ProductoId = 6, Stock = 20, Precio = 18.50 }
             });
 
             context.Camiones.AddOrUpdate(new Camion[] {
