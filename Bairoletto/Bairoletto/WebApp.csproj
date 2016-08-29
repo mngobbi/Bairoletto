@@ -118,6 +118,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bairoletto\core\core.run.js" />
+    <Content Include="bairoletto\core\layout\bai-panel-inside\bai-panel-inside.component.js" />
+    <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-aprobadas.html" />
+    <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-entransito.html" />
+    <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-finalizadas.html" />
+    <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-nuevas.html" />
     <Content Include="bairoletto\puntoventa\puntoventa.config.js" />
     <Content Include="bairoletto\puntoventa\puntoventa.module.js" />
     <Content Include="bairoletto\puntoventa\puntoventa.html" />
@@ -133,6 +138,7 @@
     <Content Include="bairoletto\core\reposicion\reposicion.service.js" />
     <Content Include="bairoletto\core\core.module.js" />
     <Content Include="css\sb-admin-2.css" />
+    <Content Include="css\style.css" />
     <Content Include="css\timeline.css" />
     <Content Include="Global.asax" />
     <Content Include="bairoletto\fabrica\fabrica.html" />
@@ -156,6 +162,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="package.json" />
+    <Content Include="bairoletto\core\layout\bai-panel-inside\bai-panel-inside.component.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

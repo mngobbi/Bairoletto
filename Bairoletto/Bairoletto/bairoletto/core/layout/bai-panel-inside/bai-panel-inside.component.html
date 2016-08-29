@@ -1,0 +1,13 @@
+﻿<div class="list-group-item" ng-class="{'{{$ctrl.baiMainColor}}': !$ctrl.baiOpen, 'bai-light-grey': $ctrl.baiOpen}"
+     ng-style="$ctrl.opened_subtitle_style" style="cursor:pointer"
+     ng-click="$ctrl.open()">
+    <div class="row">
+        <div class="col-xs-10">
+            <span ng-transclude="info"></span>
+        </div>
+        <div class="col-xs-2">
+            <i ng-if="!$ctrl.baiOpen" class="fa fa-plus-circle" style="float:right;font-size:21px"></i>
+            <i ng-if="$ctrl.baiOpen" class="fa fa-minus-circle" ng-style="$ctrl.opened_icon_style" style="float:right;font-size:21px"></i>
+        </div>
+    </div>
+</div>
