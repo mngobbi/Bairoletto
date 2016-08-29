@@ -57,10 +57,10 @@
             return $http.get('/api/reposiciones/entregadas').then(dataSuccess).catch(dataError);
         }
 
-        function crearReposicion(fecha_deseada, productos, comentario) {
+        function crearReposicion(pv_id, fecha_deseada, productos, comentario) {
             var obj = {
                 planta_elaboracion_id: 1,
-                punto_venta_id: 1,
+                punto_venta_id: pv_id,
                 fecha_entrega_deseada: fecha_deseada,
                 comentario: comentario,
                 productos: productos

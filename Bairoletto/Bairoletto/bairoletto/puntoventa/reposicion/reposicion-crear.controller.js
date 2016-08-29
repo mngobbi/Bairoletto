@@ -7,7 +7,7 @@
 
     function CrearReposicionController($uibModalInstance, toastr, productoService, reposicionService) {
 
-        var pv_id = 1;
+        var pv_id = 2;
 
         var vm = this;
         vm.title = 'Crear nueva orden de reposición';
@@ -49,7 +49,7 @@
                 toastr.warning('Debe seleccionar al menos un producto');
             else {
                 vm.cargando = true;
-                vm.prom_repo = reposicionService.crear(vm.fecha_deseada, productos, vm.comentario).then(function (data) {
+                vm.prom_repo = reposicionService.crear(pv_id, vm.fecha_deseada, productos, vm.comentario).then(function (data) {
                     toastr.success('Orden enviada correctamente');
                     vm.cargando = false;
                     $uibModalInstance.close(data);
