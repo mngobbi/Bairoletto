@@ -46,7 +46,7 @@ namespace Data
 
             if (orden == null) return NotFound();
 
-            ReposicionDTO dto = new ReposicionDTO(orden, orden.PuntoVenta, orden.Productos.ToArray(), orden.Camion);
+            ReposicionDTO dto = new ReposicionDTO(orden, orden.PuntoVenta, orden.Productos, orden.Camion);
 
             return Ok(dto);
         }
@@ -231,7 +231,18 @@ namespace Data
             if (orden == null) return NotFound();
             if (orden.Estado != OrdenReposicionEstado.nueva) return BadRequest("La orden de reposición ya fue procesada");
 
-            var ev = new OrdenReposicionEventoConfirmacion(orden, usuario_id);
+
+            var prod_ids = orden.Productos.Select(p => p.Producto.Id).ToArray();
+            var productos = db.Productos.Where(x => prod_ids.Contains(x.Id)).ToArray();
+            OrdenReposicionDetalle orden_prod;
+            foreach (Producto p in productos)
+            {
+                orden_prod = orden.Productos.Where(x => x.Producto.Id == p.Id).FirstOrDefault();
+                p.Stock = p.Stock - orden_prod.CantidadSolicitada;
+            }
+
+
+            var ev = new OrdenReposicionEventoConfirmacion(orden, usuario_id, aprobar.comentario);
             db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             orden.FechaProcesada = DateTime.UtcNow;

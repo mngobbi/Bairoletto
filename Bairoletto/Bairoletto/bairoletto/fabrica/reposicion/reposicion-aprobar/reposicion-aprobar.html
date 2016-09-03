@@ -1,0 +1,58 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{aprobar.title}}</h3>
+</div>
+<div class="modal-body">
+    <div class="row form-group">
+        <div class="col-sm-12">
+            <h4><i class="fa fa-calendar"></i> Fecha estimada de entrega</h4>
+            <p class="input-group">
+                <input type="text" class="form-control" placeholder="dd/MM/yyyy" uib-datepicker-popup="dd/MM/yyyy" datepicker-options="aprobar.date_options" ng-model="aprobar.fecha_estimada" is-open="aprobar.datepicker.opened" show-button-bar="false"  ng-disabled="aprobar.cargando"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="aprobar.open()" ng-disabled="aprobar.cargando">
+                        <i class="fa fa-calendar"></i>
+                    </button>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="row form-group" cg-busy="{promise: aprobar.prom_prod, message: 'Cargando productos ...'}">
+        <div class="col-sm-12">
+            <h4><i class="fa fa-shopping-cart"></i> Detalle de productos solicitados</h4>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr class="active">
+                            <th class="col-xs-5">Nombre</th>
+                            <th class="col-xs-3 text-center">Cantidad</th>
+                            <th class="col-xs-3 text-center">Stock fábrica</th>
+                            <th class="col-xs-1"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="p in aprobar.reposicion.productos">
+                            <td>{{p.producto.nombre}}</td>
+                            <td class="text-center">{{p.cantidad_solicitada}}</td>
+                            <td class="text-center">{{p.stock_fabrica}}</td>
+                            <td class="text-center">
+                                <i class="fa fa-check" style="color:forestgreen" ng-if="p.cantidad_solicitada <= p.stock_fabrica"></i>
+                                <i class="fa fa-times" style="color:red" ng-if="p.cantidad_solicitada > p.stock_fabrica"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-12">
+            <h4><i class="fa fa-comment-o"></i> Añadir comentario</h4>
+            <textarea class="form-control" rows="3" ng-model="aprobar.comentario" ng-disabled="aprobar.cargando"></textarea>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="aprobar.aprobar()" ng-disabled="aprobar.cargando">
+        <i class="fa fa-thumbs-o-up" ng-if="!aprobar.cargando"></i>
+        <i class="fa fa-spinner fa-spin" ng-if="aprobar.cargando"></i> Aprobar orden
+    </button>
+</div>

@@ -67,12 +67,13 @@
             }
             return $http.post('/api/reposiciones', obj).then(dataSuccess).catch(dataError);
         }
-        function aprobarOrden(rep_id, fecha_estimada) {
+        function aprobarOrden(rep_id, fecha_estimada, comentario) {
             var obj = {
                 reposicion_id: rep_id,
-                fecha_entrega_estimada: fecha_estimada
+                fecha_entrega_estimada: fecha_estimada,
+                comentario: comentario
             }
-            return $http.post('/api/reposiciones/aprobar', obj).then(dataSuccess).catch(dataError);
+            return $http.post('/api/reposiciones/'+ rep_id +'/aprobar', obj).then(dataSuccess).catch(dataError);
         }
         function rechazarOrden(rep_id, causa, comentario) {
             var obj = {
@@ -80,21 +81,21 @@
                 causa: causa,
                 comentario: comentario
             }
-            return $http.post('/api/reposiciones/rechazar', obj).then(dataSuccess).catch(dataError);
+            return $http.post('/api/reposiciones/' + rep_id + '/rechazar', obj).then(dataSuccess).catch(dataError);
         }
         function enviarOrden(rep_id, cam_id) {
             var obj = {
                 reposicion_id: rep_id,
                 camion_id: cam_id
             }
-            return $http.post('/api/reposiciones/enviar', obj).then(dataSuccess).catch(dataError);
+            return $http.post('/api/reposiciones/' + rep_id + '/enviar', obj).then(dataSuccess).catch(dataError);
         }
         function recibirOrden(rep_id, comentario) {
             var obj = {
                 reposicion_id: rep_id,
                 comentario: comentario
             }
-            return $http.post('/api/reposiciones/recepcion', obj).then(dataSuccess).catch(dataError);
+            return $http.post('/api/reposiciones/' + rep_id + '/recepcion', obj).then(dataSuccess).catch(dataError);
         }
 
         function dataSuccess(result) {
@@ -104,7 +105,7 @@
             var errorMessage = 'Se ha producido un error'
             if (typeof e.data !== 'undefined')
                 errorMessage = e.data.Message;
-            console.log(newMessage);
+            console.log(errorMessage);
             return $q.reject(e);
         }
         

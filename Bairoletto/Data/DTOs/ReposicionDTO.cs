@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -50,7 +51,7 @@ namespace Data
             eventos = new EventoDTO[] { };
         }
 
-        public ReposicionDTO(OrdenReposicion rep, PuntoVenta pv, OrdenReposicionDetalle[] prod, Camion cam) : base(rep, pv)
+        public ReposicionDTO(OrdenReposicion rep, PuntoVenta pv, IEnumerable<OrdenReposicionDetalle> prod, Camion cam) : base(rep, pv)
         {
             productos = prod.Select(x => new ProductoReposicionDTO(x, x.Producto)).ToArray();
             eventos = rep.GetEventosPublicos().Select(x => new EventoDTO(x)).ToArray();
@@ -81,6 +82,8 @@ namespace Data
         public int reposicion_id { get; set; }
 
         public DateTime? fecha_entrega_estimada { get; set; }
+
+        public string comentario { get; set; }
     }
 
     public class ReposicionRechazarDTO

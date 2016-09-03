@@ -5,36 +5,41 @@
         .module('app.fabrica')
         .controller('ReposicionController', ReposicionController);
 
-    function ReposicionController($q, reposicionService) {
+    function ReposicionController($q, $uibModal, reposicionService) {
         var vm = this;
 
         vm.panel_nuevas = {
             loading: false,
             open: false,
+            raw_data: [],
             data: [],
             total: 0,
         };
         vm.panel_aprobadas = {
             loading: false,
             open: false,
+            raw_data: [],
             data: [],
             total: 0,
         };
         vm.panel_en_transito = {
             loading: false,
             open: false,
+            raw_data: [],
             data: [],
             total: 0,
         };
         vm.panel_finalizadas = {
             loading: false,
             open: false,
+            raw_data: [],
             data: [],
             total: 0,
         };
 
         vm.abrirPanel = abrirPanel;
         vm.reposicionDetalle = reposicionDetalle;
+        vm.reposicionAprobar = reposicionAprobar;
 
         activate();
 
@@ -49,6 +54,7 @@
             vm.panel_nuevas.loading = true;
             vm.prom_panel_nuevas = reposicionService.nuevas().then(function (data) {
                 vm.panel_nuevas.total = data.length;
+                vm.panel_nuevas.raw_data = data;
                 vm.panel_nuevas.data = armarArrayPuntosVenta(data);
                 vm.panel_nuevas.loading = false;           
             }, function () {
@@ -59,6 +65,7 @@
             vm.panel_aprobadas.loading = true;
             vm.prom_panel_aprobadas = reposicionService.aprobadas().then(function (data) {
                 vm.panel_aprobadas.total = data.length;
+                vm.panel_aprobadas.raw_data = data;
                 vm.panel_aprobadas.data = armarArrayPuntosVenta(data);
                 vm.panel_aprobadas.loading = false;
             }, function () {
@@ -134,6 +141,33 @@
                     r.loading = false;
                 })
             }
+        }
+
+        function reposicionAprobar(r) {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/bairoletto/fabrica/reposicion/reposicion-aprobar/reposicion-aprobar.html',
+                controller: 'AprobarReposicionController',
+                controllerAs: 'aprobar',
+                resolve: {
+                    reposicion: function () {
+                        return r;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (orden_aprobada) {
+                //Eliminar del panel nuevas
+                _.remove(vm.panel_nuevas.raw_data, function (x) {
+                    return x.id == orden_aprobada.id;
+                });
+                vm.panel_nuevas.total = vm.panel_nuevas.raw_data.length;
+                vm.panel_nuevas.data = armarArrayPuntosVenta(vm.panel_nuevas.raw_data);
+
+                //Agregar al panel aprobadas
+                vm.panel_aprobadas.raw_data.push(orden_aprobada);
+                vm.panel_aprobadas.total = vm.panel_aprobadas.raw_data.length;
+                vm.panel_aprobadas.data = armarArrayPuntosVenta(vm.panel_aprobadas.raw_data);              
+            });
         }
     }
 })();
