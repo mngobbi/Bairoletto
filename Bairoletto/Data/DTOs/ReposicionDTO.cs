@@ -104,6 +104,8 @@ namespace Data
 
         [Required]
         public int camion_id { get; set; }
+
+        public string comentario;
     }
 
     public class ReposicionRecepcionDTO

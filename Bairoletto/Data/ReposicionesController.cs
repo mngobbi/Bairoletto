@@ -290,7 +290,7 @@ namespace Data
             Camion camion = db.Camiones.Where(x => x.Id == enviar.camion_id && x.Estado == CamionEstado.disponible).FirstOrDefault();
             if (camion == null) return NotFound();
 
-            var ev = new OrdenReposicionEventoEnTransito(orden, camion.Numero, usuario_id);
+            var ev = new OrdenReposicionEventoEnTransito(orden, camion.Numero, usuario_id, enviar.comentario);
             db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             orden.CamionId = camion.Id;

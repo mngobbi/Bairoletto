@@ -15,18 +15,58 @@
             <div class="list-group">
                 <div class="list-group-item">
                     <div class="row">
-                        <div class="col-xs-4"><b>#</b></div>
-                        <div class="col-xs-4"><b>Fecha de solicitud</b></div>
-                        <div class="col-xs-4"><b>Fecha deseada de entrega</b></div>
+                        <div class="col-xs-6"><b>#</b></div>
+                        <div class="col-xs-6"><b>Fecha estimada de entrega</b></div>
                     </div>
                 </div>
-                <div class="list-group-item" ng-repeat="r in pv.reposiciones" ng-click="repos.reposicionDetalle(r.id)">
-                    <div class="row">
-                        <div class="col-xs-4">{{r.numero_orden}}</div>
-                        <div class="col-xs-4">{{r.fecha_solicitud | date: 'dd/MM/yyyy HH:mm'}}</div>
-                        <div class="col-xs-4">
-                            <span ng-if="r.fecha_entrega_deseada">{{r.fecha_entrega_deseada | date: 'dd/MM/yyyy'}}</span>
-                            <span ng-if="!r.fecha_entrega_deseada">Sin definir</span>
+                <div ng-repeat="r in pv.reposiciones">
+                    <a href="" class="list-group-item" ng-click="repos.reposicionDetalle(r); r.open = !r.open">
+                        <div class="row">
+                            <div class="col-xs-6">{{r.numero_orden}}</div>
+                            <div class="col-xs-6">
+                                <span ng-if="r.fecha_entrega_estimada">{{r.fecha_entrega_estimada | date: 'dd/MM/yyyy'}}</span>
+                                <span ng-if="!r.fecha_entrega_estimada">Sin definir</span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="panel panel-default" uib-collapse="!r.open">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="row form-group">
+                                        <div class="col-xs-12">
+                                            <label><i class="fa fa-shopping-cart"></i> Productos solicitados:</label>
+                                            <ul>
+                                                <li ng-repeat="p in r.productos">
+                                                    <span class="badge">{{p.cantidad_solicitada}}</span>&nbsp;{{p.producto.nombre}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row form-group">
+                                        <div class="col-xs-6 col-md-12" style="margin-top:5px">
+                                            <button class="btn btn-block btn-sm btn-success" ng-click="repos.reposicionEnviar(r)"><i class="fa fa-truck"></i> Enviar</button>
+                                        </div>
+                                        <div class="col-xs-6 col-md-12" style="margin-top:5px">
+                                            <button class="btn btn-block btn-sm btn-primary"><i class="fa fa-calendar"></i> Posponer</button>
+                                        </div>
+                                        <div class="col-xs-6 col-md-12" style="margin-top:5px">
+                                            <button class="btn btn-block btn-sm btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="row form-group">
+                                        <div class="col-xs-12">
+                                            <label><i class="fa fa-comment-o"></i> Añadir comentario</label>
+                                            <textarea class="form-control" rows="4" placeholder="Escriba un comentario ..."></textarea>
+                                            <button style="margin-top:5px" class="btn btn-sm btn-success"><i class="fa fa-share-square-o"></i> Enviar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

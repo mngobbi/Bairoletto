@@ -83,10 +83,11 @@
             }
             return $http.post('/api/reposiciones/' + rep_id + '/rechazar', obj).then(dataSuccess).catch(dataError);
         }
-        function enviarOrden(rep_id, cam_id) {
+        function enviarOrden(rep_id, cam_id, comentario) {
             var obj = {
                 reposicion_id: rep_id,
-                camion_id: cam_id
+                camion_id: cam_id,
+                comentario: comentario
             }
             return $http.post('/api/reposiciones/' + rep_id + '/enviar', obj).then(dataSuccess).catch(dataError);
         }

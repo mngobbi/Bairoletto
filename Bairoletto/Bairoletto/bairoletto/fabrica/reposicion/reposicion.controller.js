@@ -40,6 +40,7 @@
         vm.abrirPanel = abrirPanel;
         vm.reposicionDetalle = reposicionDetalle;
         vm.reposicionAprobar = reposicionAprobar;
+        vm.reposicionEnviar = reposicionEnviar;
 
         activate();
 
@@ -167,6 +168,32 @@
                 vm.panel_aprobadas.raw_data.push(orden_aprobada);
                 vm.panel_aprobadas.total = vm.panel_aprobadas.raw_data.length;
                 vm.panel_aprobadas.data = armarArrayPuntosVenta(vm.panel_aprobadas.raw_data);              
+            });
+        }
+        function reposicionEnviar(r) {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/bairoletto/fabrica/reposicion/reposicion-enviar/reposicion-enviar.html',
+                controller: 'EnviarReposicionController',
+                controllerAs: 'enviar',
+                resolve: {
+                    reposicion: function () {
+                        return r;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (orden_enviada) {
+                //Eliminar del panel nuevas
+                _.remove(vm.panel_aprobadas.raw_data, function (x) {
+                    return x.id == orden_enviada.id;
+                });
+                vm.panel_aprobadas.total = vm.panel_aprobadas.raw_data.length;
+                vm.panel_aprobadas.data = armarArrayPuntosVenta(vm.panel_nuevas.raw_data);
+
+                //Agregar al panel aprobadas
+                vm.panel_en_transito.raw_data.push(orden_enviada);
+                vm.panel_en_transito.total = vm.panel_en_transito.raw_data.length;
+                vm.panel_en_transito.data = armarArrayPuntosVenta(vm.panel_en_transito.raw_data);
             });
         }
     }

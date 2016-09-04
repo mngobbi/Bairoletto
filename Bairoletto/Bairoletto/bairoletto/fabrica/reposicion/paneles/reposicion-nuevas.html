@@ -15,26 +15,28 @@
             <div class="list-group">
                 <div class="list-group-item">
                     <div class="row">
-                        <div class="col-xs-4"><b>#</b></div>
-                        <div class="col-xs-4"><b>Fecha de solicitud</b></div>
-                        <div class="col-xs-4"><b>Fecha deseada de entrega</b></div>
+                        <div class="col-xs-6"><b>#</b></div>
+                        <div class="col-xs-6"><b>Fecha de solicitud</b></div>
                     </div>
                 </div>
                 <div ng-repeat="r in pv.reposiciones">
                     <a href="" class="list-group-item" ng-click="repos.reposicionDetalle(r); r.open = !r.open">
                         <div class="row">
-                            <div class="col-xs-4">{{r.numero_orden}}</div>
-                            <div class="col-xs-4">{{r.fecha_solicitud | date: 'dd/MM/yyyy'}}</div>
-                            <div class="col-xs-4">
-                                <span ng-if="r.fecha_entrega_deseada">{{r.fecha_entrega_deseada | date: 'dd/MM/yyyy'}}</span>
-                                <span ng-if="!r.fecha_entrega_deseada">Sin definir</span>
-                            </div>
+                            <div class="col-xs-6">{{r.numero_orden}}</div>
+                            <div class="col-xs-6">{{r.fecha_solicitud | date: 'dd/MM/yyyy'}}</div>
                         </div>
                     </a>
                     <div class="panel panel-default" uib-collapse="!r.open">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-9">
+                                    <div class="row form-group">
+                                        <div class="col-xs-12">
+                                            <label><i class="fa fa-calendar"></i> Fecha deseada de entrega:</label>
+                                            <span ng-if="r.fecha_entrega_deseada">{{r.fecha_entrega_deseada | date: 'dd/MM/yyyy'}}</span>
+                                            <span ng-if="!r.fecha_entrega_deseada">Sin definir</span>
+                                        </div>
+                                    </div>
                                     <div class="row form-group">
                                         <div class="col-xs-12">
                                             <label><i class="fa fa-shopping-cart"></i> Productos solicitados:</label>

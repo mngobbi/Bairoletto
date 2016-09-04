@@ -125,6 +125,8 @@
     <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-nuevas.html" />
     <Content Include="bairoletto\fabrica\reposicion\reposicion-aprobar\reposicion-aprobar.controller.js" />
     <Content Include="bairoletto\fabrica\reposicion\reposicion-aprobar\reposicion-aprobar.html" />
+    <Content Include="bairoletto\fabrica\reposicion\reposicion-enviar\reposicion-enviar.controller.js" />
+    <Content Include="bairoletto\fabrica\reposicion\reposicion-enviar\reposicion-enviar.html" />
     <Content Include="bairoletto\puntoventa\puntoventa.config.js" />
     <Content Include="bairoletto\puntoventa\puntoventa.module.js" />
     <Content Include="bairoletto\puntoventa\puntoventa.html" />

@@ -1,0 +1,30 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{enviar.title}}</h3>
+</div>
+<div class="modal-body">
+    <div class="row form-group">
+        <div class="col-sm-12">
+            <h4><i class="fa fa-truck"></i> Camión asignado</h4>
+            <ui-select ng-model="enviar.camion" theme="bootstrap" sortable="true" ng-disabled="enviar.cargando">
+                <ui-select-match placeholder="Seleccione ...">{{$select.selected.numero}}</ui-select-match>
+                <ui-select-choices repeat="c.id as c in enviar.camiones | filter: $select.search">
+                    <div>Número: <span ng-bind-html="''+c.numero | highlight: $select.search"></span></div>
+                    <div><small>Patente: {{c.patente}}</small></div>
+                    <div><small>Capacidad: <span ng-bind-html="''+c.capacidad | highlight: $select.search"></span></small></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-12">
+            <h4><i class="fa fa-comment-o"></i> Añadir comentario</h4>
+            <textarea class="form-control" rows="3" ng-model="enviar.comentario" ng-disabled="enviar.cargando"></textarea>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="enviar.enviar()" ng-disabled="enviar.cargando">
+        <i class="fa fa-thumbs-o-up" ng-if="!enviar.cargando"></i>
+        <i class="fa fa-spinner fa-spin" ng-if="enviar.cargando"></i> Enviar orden
+    </button>
+</div>
