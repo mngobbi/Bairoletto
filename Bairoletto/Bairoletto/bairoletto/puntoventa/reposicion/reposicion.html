@@ -2,7 +2,60 @@
     <h1>Órdenes de reposición</h1>
 </div>
 <div class="row">
-    <div class="col-sm-8">
-        <button class="btn btn-success" ng-click="repos.nueva()">Crear</button>
+    <div class="col-lg-6">
+        <div class="row">
+            <div class="col-xs-12 text-right">
+                <button class="btn btn-primary" ng-click="repos.nueva()"><i class="fa fa-plus"></i> Crear</button>
+            </div>
+        </div>
+        <div ng-repeat="r in repos.ordenes_reposicion_proceso" ng-click="repos.reposicionDetalle(r); r.open = !r.open">
+            <div class="bs-callout bs-callout-primary" style="cursor:pointer" ng-class="{'bs-callout-primary-selected': r.open}">
+                <div class="row">
+                    <div class="col-md-1 col-xs-2">
+                        <i class="fa fa-3x" ng-class="{'fa-clock-o': r.estado == 'nueva', 'fa-thumbs-o-up': r.estado == 'confirmada', 'fa-truck': r.estado == 'en_transito'}" style="color:#428bca"></i>
+                    </div>
+                    <div class="col-md-11 col-xs-10">
+                        <h4 ng-if="r.estado == 'nueva'">Pendiente de aprobar</h4>
+                        <h4 ng-if="r.estado == 'confirmada'">Aprobada</h4>
+                        <h4 ng-if="r.estado == 'en_transito'">En tránsito</h4>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <small style="color:#aaa"><strong>Número de orden: {{r.numero_orden}}</strong></small>
+                            </div>
+                            <div style="color:#428bca" class="col-xs-6 text-right">
+                                <strong>{{r.fecha_solicitud | date: 'EEE dd/MM HH:mm'}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" uib-collapse="!r.open">
+                    <hr />
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12" ng-if="r.estado == 'nueva'">
+                                <label><i class="fa fa-calendar"></i> Fecha deseada de entrega:</label>
+                                <span>{{(r.fecha_entrega_deseada | date: 'dd/MM/yyyy') || 'Sin definir'}}</span>
+                            </div>
+                            <div class="col-xs-12" ng-if="r.estado != 'nueva'">
+                                <label><i class="fa fa-calendar"></i> Fecha estimada de entrega:</label>
+                                <span>{{(r.fecha_entrega_estimada | date: 'dd/MM/yyyy') || 'Pendiente'}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label><i class="fa fa-shopping-cart"></i> Productos:</label>
+                                <ul>
+                                    <li ng-repeat="p in r.productos">
+                                        <span class="badge">{{p.cantidad_solicitada}}</span>&nbsp;{{p.producto.nombre}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    <div class="col-lg-6">
     </div>
 </div>

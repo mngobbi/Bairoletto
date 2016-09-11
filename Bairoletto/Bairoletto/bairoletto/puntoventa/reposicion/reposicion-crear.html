@@ -4,7 +4,7 @@
 <div class="modal-body" cg-busy="{promise: nueva.prom_repo, message: 'Enviando nueva orden de reposición ...'}">
     <div class="row form-group">
         <div class="col-sm-12">
-            <label>Fecha deseada</label>
+            <h4><i class="fa fa-calendar"></i> Fecha deseada de entrega</h4>
             <p class="input-group">
                 <input type="text" class="form-control" placeholder="dd/MM/yyyy" uib-datepicker-popup="dd/MM/yyyy" datepicker-options="nueva.date_options" ng-model="nueva.fecha_deseada" is-open="nueva.datepicker.opened" show-button-bar="false"  ng-disabled="nueva.cargando"/>
                 <span class="input-group-btn">
@@ -17,7 +17,7 @@
     </div>
     <div class="row form-group" cg-busy="{promise: nueva.prom_prod, message: 'Cargando productos ...'}">
         <div class="col-sm-12">
-            <label>Productos <span class="badge">{{nueva.productos_seleccionados.length}}</span></label>
+            <h4><i class="fa fa-shopping-cart"></i> Productos <span class="badge">{{nueva.productos_seleccionados.length}}</span></h4>
             <ui-select multiple ng-model="nueva.productos_seleccionados" theme="bootstrap" sortable="true" ng-disabled="nueva.cargando">
                 <ui-select-match placeholder="Seleccione ...">{{$item.producto.nombre}}</ui-select-match>
                 <ui-select-choices repeat="p in nueva.productos | filter: $select.search">
@@ -39,7 +39,7 @@
     </div>
     <div class="row form-group">
         <div class="col-sm-12">
-            <label>Comentario</label>
+            <h4><i class="fa fa-comment-o"></i> Añadir comentario</h4>
             <textarea class="form-control" rows="3" ng-model="nueva.comentario" ng-disabled="nueva.cargando"></textarea>
         </div>
     </div>
