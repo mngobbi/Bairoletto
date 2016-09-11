@@ -15,6 +15,7 @@
 
         vm.reposicionDetalle = reposicionDetalle;
         vm.nueva = nuevaOrden;
+        vm.recepcion = marcarRecepcion;
 
         activate();
 
@@ -54,6 +55,27 @@
 
             modalInstance.result.then(function (nueva_orden) {
                 vm.ordenes_reposicion_proceso.unshift(nueva_orden);
+            });
+        }
+
+        function marcarRecepcion(r) {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/bairoletto/puntoventa/reposicion/reposicion-recepcion/reposicion-recepcion.html',
+                controller: 'RecibirReposicionController',
+                controllerAs: 'recepcion',
+                resolve: {
+                    reposicion: function () {
+                        return r;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (orden_entregada) {
+                _.remove(vm.ordenes_reposicion_proceso, function (x) {
+                    return x.id == orden_entregada.id;
+                });
+
+                vm.ordenes_reposicion_finalizadas.unshift(orden_entregada)
             });
         }
     }

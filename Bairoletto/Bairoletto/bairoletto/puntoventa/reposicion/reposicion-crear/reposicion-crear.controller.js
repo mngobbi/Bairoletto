@@ -11,7 +11,6 @@
 
         var vm = this;
         vm.title = 'Crear nueva orden de reposición';
-        vm.comentario = '';
         vm.datepicker = {
             opened: false
         };

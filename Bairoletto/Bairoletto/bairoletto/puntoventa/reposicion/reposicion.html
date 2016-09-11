@@ -8,9 +8,9 @@
                 <button class="btn btn-primary" ng-click="repos.nueva()"><i class="fa fa-plus"></i> Crear</button>
             </div>
         </div>
-        <div ng-repeat="r in repos.ordenes_reposicion_proceso" ng-click="repos.reposicionDetalle(r); r.open = !r.open">
-            <div class="bs-callout bs-callout-primary" style="cursor:pointer" ng-class="{'bs-callout-primary-selected': r.open}">
-                <div class="row">
+        <div ng-repeat="r in repos.ordenes_reposicion_proceso">
+            <div class="bs-callout bs-callout-primary" ng-class="{'bs-callout-primary-selected': r.open}">
+                <div class="row" style="cursor:pointer" ng-click="repos.reposicionDetalle(r); r.open = !r.open">
                     <div class="col-md-1 col-xs-2">
                         <i class="fa fa-3x" ng-if="!r.loading" ng-class="{'fa-clock-o': r.estado == 'nueva', 'fa-thumbs-o-up': r.estado == 'confirmada', 'fa-truck': r.estado == 'en_transito'}" style="color:#428bca"></i>
                         <i class="fa fa-spinner fa-spin fa-3x" ng-if="r.loading" style="color:#428bca"></i>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="row" uib-collapse="!r.open" ng-if="!r.loading">
                     <hr />
-                    <div class="col-xs-12">
+                    <div class="col-md-9">
                         <div class="row">
                             <div class="col-xs-12" ng-if="r.estado == 'nueva'">
                                 <label><i class="fa fa-calendar"></i> Fecha deseada de entrega:</label>
@@ -52,6 +52,10 @@
                                 </ul>
                             </div>
                         </div> 
+                    </div>
+                    <br class="visible-xs-block visible-sm-block"/>
+                    <div class="col-md-3">
+                        <button class="btn btn-sm btn-block btn-primary" ng-if="r.estado == 'en_transito'" ng-click="repos.recepcion(r)"><i class="fa fa-check"></i> Marcar recepción</button>
                     </div>
                     <div class="col-xs-12" ng-if="r.eventos.length > 0">
                         <bai-eventos bai-eventos="r.eventos"></bai-eventos>
