@@ -117,6 +117,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bairoletto\core\components\bai-eventos\bai-eventos.component.js" />
     <Content Include="bairoletto\core\core.run.js" />
     <Content Include="bairoletto\core\layout\bai-panel-inside\bai-panel-inside.component.js" />
     <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-aprobadas.html" />
@@ -167,6 +168,7 @@
     </Content>
     <Content Include="package.json" />
     <Content Include="bairoletto\core\layout\bai-panel-inside\bai-panel-inside.component.html" />
+    <Content Include="bairoletto\core\components\bai-eventos\bai-eventos.component.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
