@@ -13,7 +13,6 @@
         vm.ordenes_reposicion_proceso = [];
         vm.ordenes_reposicion_finalizadas = [];
 
-        vm.reposicionDetalle = reposicionDetalle;
         vm.nueva = nuevaOrden;
         vm.recepcion = marcarRecepcion;
 
@@ -25,24 +24,10 @@
                 vm.ordenes_reposicion_proceso = _.filter(data, function (x) {
                     return x.estado == 'nueva' || x.estado == 'confirmada' || x.estado == 'en_transito';
                 });
+                vm.ordenes_reposicion_finalizadas = _.filter(data, function (x) {
+                    return x.estado == 'entregada' || x.estado == 'cancelada';
+                });
             }, function () { })
-        }
-
-        function reposicionDetalle(r) {
-            if (!r.all_data && !r.loading) {
-                r.loading = true;
-                reposicionService.getById(r.id).then(function (data) {
-                    r.loading = false;
-                    r = _.mergeWith(r, data, function (objValue, srcValue) {
-                        if (_.isArray(objValue)) {
-                            return objValue = srcValue;
-                        }
-                    });
-                    r.all_data = true;
-                }, function () {
-                    r.loading = false;
-                })
-            }
         }
 
         function nuevaOrden() {

@@ -1,4 +1,15 @@
-﻿.bai-light-green {
+﻿.bai-color-blue {
+    color: #428bca;
+}
+
+.bai-color-red {
+    color: #d9534f;
+}
+
+.bai-color-green {
+    color: #5cb85c;
+}
+.bai-light-green {
     background-color:#55b37f !important;
     color:white !important
 }
@@ -65,7 +76,7 @@
 .bs-callout-primary {
     border-left-color: #428bca;
 }
-.bs-callout-primary-selected {
+.bs-callout-primary-active {
     border-top: 1px solid #428bca;
     border-right: 1px solid #428bca;
     border-bottom: 1px solid #428bca;
@@ -76,11 +87,21 @@
 .bs-callout-success {
     border-left-color: #5cb85c;
 }
+.bs-callout-success-active {
+    border-top: 1px solid #5cb85c;
+    border-right: 1px solid #5cb85c;
+    border-bottom: 1px solid #5cb85c;
+}
 .bs-callout-success h4 {
     color: #5cb85c;
 }
 .bs-callout-danger {
     border-left-color: #d9534f;
+}
+.bs-callout-danger-active {
+    border-top: 1px solid #d9534f;
+    border-right: 1px solid #d9534f;
+    border-bottom: 1px solid #d9534f;
 }
 .bs-callout-danger h4 {
     color: #d9534f;

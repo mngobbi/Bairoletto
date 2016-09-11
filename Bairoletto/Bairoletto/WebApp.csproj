@@ -135,6 +135,8 @@
     <Content Include="bairoletto\fabrica\reposicion\reposicion.html" />
     <Content Include="bairoletto\puntoventa\reposicion\reposicion-crear\reposicion-crear.controller.js" />
     <Content Include="bairoletto\puntoventa\reposicion\reposicion-crear\reposicion-crear.html" />
+    <Content Include="bairoletto\puntoventa\reposicion\reposicion-detalle\reposicion-detalle.component.html" />
+    <Content Include="bairoletto\puntoventa\reposicion\reposicion-detalle\reposicion-detalle.component.js" />
     <Content Include="bairoletto\puntoventa\reposicion\reposicion-recepcion\reposicion-recepcion.controller.js" />
     <Content Include="bairoletto\puntoventa\reposicion\reposicion-recepcion\reposicion-recepcion.html" />
     <Content Include="bairoletto\puntoventa\reposicion\reposicion.controller.js" />

@@ -1,0 +1,48 @@
+﻿<div class="bs-callout"
+     ng-class="{'bs-callout-primary': $ctrl.baiClass == 'primary', 'bs-callout-success': $ctrl.baiClass == 'success', 'bs-callout-danger': $ctrl.baiClass == 'danger',
+                'bs-callout-primary-active': $ctrl.baiClass == 'primary' && $ctrl.baiData.open, 
+                'bs-callout-success-active': $ctrl.baiClass == 'success' && $ctrl.baiData.open,
+                'bs-callout-danger-active': $ctrl.baiClass == 'danger' && $ctrl.baiData.open }">
+    <div class="row" style="cursor:pointer" ng-click="$ctrl.reposicionDetalle(); $ctrl.baiData.open = !$ctrl.baiData.open">
+        <div class="col-md-1 col-xs-2">
+            <i class="fa {{$ctrl.baiIcon}} fa-3x" ng-if="!$ctrl.baiData.loading"
+               ng-class="{'bai-color-blue': $ctrl.baiClass == 'primary', 'bai-color-green': $ctrl.baiClass == 'success', 'bai-color-red': $ctrl.baiClass == 'danger' }"></i>
+            <i class="fa fa-spinner fa-spin fa-3x" ng-if="$ctrl.baiData.loading"
+               ng-class="{'bai-color-blue': $ctrl.baiClass == 'primary', 'bai-color-green': $ctrl.baiClass == 'success', 'bai-color-red': $ctrl.baiClass == 'danger' }"></i>
+        </div>
+        <div class="col-md-11 col-xs-10">
+            <h4>{{$ctrl.baiTitle}}</h4>
+            <div class="row">
+                <div class="col-xs-6">
+                    <small style="color:#aaa"><strong>Número de orden: {{$ctrl.baiData.numero_orden}}</strong></small>
+                </div>
+                <div class="col-xs-6 text-right" ng-class="{'bai-color-blue': $ctrl.baiClass == 'primary', 'bai-color-green': $ctrl.baiClass == 'success', 'bai-color-red': $ctrl.baiClass == 'danger' }">
+                    <strong>{{$ctrl.baiData.fecha_solicitud | date: 'EEE dd/MM HH:mm'}}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" uib-collapse="!$ctrl.baiData.open" ng-if="!$ctrl.baiData.loading">
+        <hr />
+        <div class="col-md-9">
+            <div ng-transclude="extraData"></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label><i class="fa fa-shopping-cart"></i> Productos:</label>
+                    <ul>
+                        <li ng-repeat="p in $ctrl.baiData.productos">
+                            <span class="badge">{{::p.cantidad_solicitada}}</span>&nbsp;{{::p.producto.nombre}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <br class="visible-xs-block visible-sm-block" />
+        <div class="col-md-3">
+            <div ng-transclude="actions"></div>
+        </div>
+        <div class="col-xs-12" ng-if="$ctrl.baiData.eventos.length > 0">
+            <bai-eventos bai-eventos="$ctrl.baiData.eventos"></bai-eventos>
+        </div>
+    </div>
+</div>
