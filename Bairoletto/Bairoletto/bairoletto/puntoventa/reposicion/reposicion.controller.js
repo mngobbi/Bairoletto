@@ -46,7 +46,7 @@
 
         function nuevaOrden() {
             var modalInstance = $uibModal.open({
-                templateUrl: '/bairoletto/puntoventa/reposicion/reposicion-crear.html',
+                templateUrl: '/bairoletto/puntoventa/reposicion/reposicion-crear/reposicion-crear.html',
                 controller: 'CrearReposicionController',
                 controllerAs: 'nueva',
                 size: 'lg'

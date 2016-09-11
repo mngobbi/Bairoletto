@@ -133,8 +133,8 @@
     <Content Include="bairoletto\puntoventa\puntoventa.html" />
     <Content Include="bairoletto\fabrica\reposicion\reposicion.controller.js" />
     <Content Include="bairoletto\fabrica\reposicion\reposicion.html" />
-    <Content Include="bairoletto\puntoventa\reposicion\reposicion-crear.controller.js" />
-    <Content Include="bairoletto\puntoventa\reposicion\reposicion-crear.html" />
+    <Content Include="bairoletto\puntoventa\reposicion\reposicion-crear\reposicion-crear.controller.js" />
+    <Content Include="bairoletto\puntoventa\reposicion\reposicion-crear\reposicion-crear.html" />
     <Content Include="bairoletto\puntoventa\reposicion\reposicion.controller.js" />
     <Content Include="bairoletto\puntoventa\reposicion\reposicion.html" />
     <Content Include="bairoletto\fabrica\camion\camion.service.js" />
@@ -184,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bairoletto\fabrica\reposicion\reposicion-rachazar\" />
+    <Folder Include="bairoletto\puntoventa\reposicion\reposicion-recepcion\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
