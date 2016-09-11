@@ -5,7 +5,10 @@
         .module('app.core')
         .run(run);
 
-    function run(editableOptions) {
+    function run(amMoment, editableOptions) {
+
+        // angular-moment config
+        amMoment.changeLocale('es');
 
         // xeditable config
         editableOptions.theme = 'bs3';

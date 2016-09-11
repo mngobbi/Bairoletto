@@ -8,6 +8,7 @@
         'ngSanitize',
 
         // 3rd Party Modules
+        'angularMoment',
         'cgBusy',
         'ui.bootstrap',
         'ui.select',
