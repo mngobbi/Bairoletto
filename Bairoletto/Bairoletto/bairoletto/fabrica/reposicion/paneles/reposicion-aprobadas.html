@@ -24,8 +24,7 @@
                         <div class="row">
                             <div class="col-xs-6">{{r.numero_orden}}</div>
                             <div class="col-xs-6">
-                                <span ng-if="r.fecha_entrega_estimada">{{r.fecha_entrega_estimada | date: 'dd/MM/yyyy'}}</span>
-                                <span ng-if="!r.fecha_entrega_estimada">Sin definir</span>
+                                <span>{{(r.fecha_entrega_estimada | date: 'dd/MM/yyyy') || 'Sin definir'}}</span>
                             </div>
                         </div>
                     </a>

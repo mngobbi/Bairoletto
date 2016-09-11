@@ -5,7 +5,7 @@
     <div class="row form-group">
         <div class="col-sm-12">
             <h4><i class="fa fa-truck"></i> Camión asignado</h4>
-            <ui-select ng-model="enviar.camion" theme="bootstrap" sortable="true" ng-disabled="enviar.cargando">
+            <ui-select ng-if="enviar.camiones.length > 0" ng-model="enviar.camion" theme="bootstrap" sortable="true" ng-disabled="enviar.cargando">
                 <ui-select-match placeholder="Seleccione ...">{{$select.selected.numero}}</ui-select-match>
                 <ui-select-choices repeat="c.id as c in enviar.camiones | filter: $select.search">
                     <div>Número: <span ng-bind-html="''+c.numero | highlight: $select.search"></span></div>
@@ -13,6 +13,7 @@
                     <div><small>Capacidad: <span ng-bind-html="''+c.capacidad | highlight: $select.search"></span></small></div>
                 </ui-select-choices>
             </ui-select>
+            <span ng-if="enviar.camiones.length == 0">No hay camiones disponibles para realizar la entrega</span>
         </div>
     </div>
     <div class="row form-group">

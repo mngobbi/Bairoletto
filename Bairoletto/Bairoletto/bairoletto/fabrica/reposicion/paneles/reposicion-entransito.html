@@ -1,10 +1,69 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
-
-</body>
-</html>
+﻿<div class="list-group">
+    <div ng-repeat="pv in repos.panel_en_transito.data">
+        <bai-panel-inside bai-main-color="'bai-dark-blue-green'" bai-opened-color="'#0d7170'" bai-open="pv.open" ng-click="pv.open = !pv.open">
+            <bai-info>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1">
+                        <span class="badge" ng-class="{'bai-badge-close': !pv.open, 'bai-dark-blue-green': pv.open}">{{pv.reposiciones.length}}</span>
+                    </div>
+                    <div class="col-xs-4 col-md-3">{{pv.codigo}}</div>
+                    <div class="col-xs-6 col-md-8">{{pv.nombre}}</div>
+                </div>
+            </bai-info>
+        </bai-panel-inside>
+        <div uib-collapse="!pv.open">
+            <div class="list-group">
+                <div class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-6"><b>#</b></div>
+                        <div class="col-xs-6"><b>Fecha estimada de entrega</b></div>
+                    </div>
+                </div>
+                <div ng-repeat="r in pv.reposiciones">
+                    <a href="" class="list-group-item" ng-click="repos.reposicionDetalle(r); r.open = !r.open">
+                        <div class="row">
+                            <div class="col-xs-6">{{r.numero_orden}}</div>
+                            <div class="col-xs-6">
+                                <span>{{(r.fecha_entrega_estimada | date: 'dd/MM/yyyy') || 'Sin definir'}}</span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="panel panel-default" uib-collapse="!r.open">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="row form-group">
+                                        <div class="col-xs-12">
+                                            <label><i class="fa fa-shopping-cart"></i> Productos solicitados:</label>
+                                            <ul>
+                                                <li ng-repeat="p in r.productos">
+                                                    <span class="badge">{{p.cantidad_solicitada}}</span>&nbsp;{{p.producto.nombre}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row form-group">
+                                        <div class="col-xs-6 col-md-12" style="margin-top:5px">
+                                            <button class="btn btn-block btn-sm btn-danger"><i class="fa fa-times"></i> Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="row form-group">
+                                        <div class="col-xs-12">
+                                            <label><i class="fa fa-comment-o"></i> Añadir comentario</label>
+                                            <textarea class="form-control" rows="4" placeholder="Escriba un comentario ..."></textarea>
+                                            <button style="margin-top:5px" class="btn btn-sm btn-success"><i class="fa fa-share-square-o"></i> Enviar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

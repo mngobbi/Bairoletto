@@ -76,8 +76,9 @@
         function promEnTransito() {
             vm.panel_en_transito.loading = true;
             vm.prom_panel_en_transito = reposicionService.entransito().then(function (data) {
-                vm.panel_en_transito.data = data;
                 vm.panel_en_transito.total = data.length;
+                vm.panel_en_transito.raw_data = data;
+                vm.panel_en_transito.data = armarArrayPuntosVenta(data);
                 vm.panel_en_transito.loading = false;
             }, function () {
                 vm.panel_en_transito.loading = false;
@@ -188,7 +189,7 @@
                     return x.id == orden_enviada.id;
                 });
                 vm.panel_aprobadas.total = vm.panel_aprobadas.raw_data.length;
-                vm.panel_aprobadas.data = armarArrayPuntosVenta(vm.panel_nuevas.raw_data);
+                vm.panel_aprobadas.data = armarArrayPuntosVenta(vm.panel_aprobadas.raw_data);
 
                 //Agregar al panel aprobadas
                 vm.panel_en_transito.raw_data.push(orden_enviada);
