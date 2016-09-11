@@ -15,6 +15,7 @@ namespace Bairoletto
             DefFormatter.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             DefFormatter.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
             DefFormatter.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            DefFormatter.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
 
             Newtonsoft.Json.JsonConvert.DefaultSettings = () => DefFormatter;
             config.Formatters.JsonFormatter.SerializerSettings = DefFormatter;
