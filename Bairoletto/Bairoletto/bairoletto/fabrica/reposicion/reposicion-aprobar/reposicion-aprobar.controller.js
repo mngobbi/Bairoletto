@@ -42,6 +42,7 @@
             vm.cargando = true;
             reposicionService.aprobar(vm.reposicion.id, vm.fecha_estimada, vm.comentario).then(function (data) {
                 vm.cargando = false;
+                toastr.success('Orden de reposición aprobada correctamente');
                 $uibModalInstance.close(data);
             }, function (error) {
                 vm.cargando = false;
