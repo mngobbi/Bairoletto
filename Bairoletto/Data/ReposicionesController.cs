@@ -263,7 +263,14 @@ namespace Data
 
             OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
             if (orden == null) return NotFound();
-            if (orden.Estado != OrdenReposicionEstado.nueva) return BadRequest("La orden de reposición ya fue procesada");
+
+            if (orden.CamionId != null)
+            {
+                Camion camion = db.Camiones.Where(c => c.Id == orden.CamionId).FirstOrDefault();
+                if (camion == null) return NotFound();
+
+                camion.Estado = CamionEstado.disponible;
+            }
 
             var ev = new OrdenReposicionEventoCancelacion(orden, rechazar.causa, usuario_id, rechazar.comentario);
             db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));

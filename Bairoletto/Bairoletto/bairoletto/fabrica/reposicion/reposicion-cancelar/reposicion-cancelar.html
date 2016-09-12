@@ -1,0 +1,28 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{cancelar.title}}</h3>
+</div>
+<div class="modal-body">
+    <div class="row form-group">
+        <div class="col-sm-12">
+            <h4><i class="fa fa-info-circle"></i> Seleccione una causa</h4>
+            <ui-select ng-model="cancelar.causa" theme="bootstrap" sortable="true" ng-disabled="cancelar.cargando">
+                <ui-select-match placeholder="Seleccione ...">{{$select.selected.value}}</ui-select-match>
+                <ui-select-choices repeat="c.id as c in cancelar.causas | filter: $select.search">
+                    <div ng-bind-html="c.value | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-12">
+            <h4><i class="fa fa-comment-o"></i> Añadir comentario</h4>
+            <textarea class="form-control" rows="3" ng-model="cancelar.comentario" ng-disabled="cancelar.cargando"></textarea>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" ng-click="cancelar.cancelar()" ng-disabled="cancelar.cargando">
+        <i class="fa fa-thumbs-o-down" ng-if="!cancelar.cargando"></i>
+        <i class="fa fa-spinner fa-spin" ng-if="cancelar.cargando"></i> Cancelar orden
+    </button>
+</div>

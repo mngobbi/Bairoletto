@@ -16,7 +16,7 @@
             entregadas: getEntregadas,
             crear: crearReposicion,
             aprobar: aprobarOrden,
-            rechazar: rechazarOrden,
+            cancelar: cancelarOrden,
             enviar: enviarOrden,
             recepcion: recibirOrden
         };
@@ -75,7 +75,7 @@
             }
             return $http.post('/api/reposiciones/'+ rep_id +'/aprobar', obj).then(dataSuccess).catch(dataError);
         }
-        function rechazarOrden(rep_id, causa, comentario) {
+        function cancelarOrden(rep_id, causa, comentario) {
             var obj = {
                 reposicion_id: rep_id,
                 causa: causa,

@@ -41,6 +41,7 @@
         vm.reposicionDetalle = reposicionDetalle;
         vm.reposicionAprobar = reposicionAprobar;
         vm.reposicionEnviar = reposicionEnviar;
+        vm.reposicionCancelar = reposicionCancelar;
 
         activate();
 
@@ -184,17 +185,58 @@
             });
 
             modalInstance.result.then(function (orden_enviada) {
-                //Eliminar del panel nuevas
+                //Eliminar del panel aprobadas
                 _.remove(vm.panel_aprobadas.raw_data, function (x) {
                     return x.id == orden_enviada.id;
                 });
                 vm.panel_aprobadas.total = vm.panel_aprobadas.raw_data.length;
                 vm.panel_aprobadas.data = armarArrayPuntosVenta(vm.panel_aprobadas.raw_data);
 
-                //Agregar al panel aprobadas
+                //Agregar al panel en transito
                 vm.panel_en_transito.raw_data.push(orden_enviada);
                 vm.panel_en_transito.total = vm.panel_en_transito.raw_data.length;
                 vm.panel_en_transito.data = armarArrayPuntosVenta(vm.panel_en_transito.raw_data);
+            });
+        }
+        function reposicionCancelar(r, panel) {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/bairoletto/fabrica/reposicion/reposicion-cancelar/reposicion-cancelar.html',
+                controller: 'CancelarReposicionController',
+                controllerAs: 'cancelar',
+                resolve: {
+                    reposicion: function () {
+                        return r;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (orden_cancelada) {
+
+                //Eliminar del panel
+                if (panel == 'nuevas') {
+                    _.remove(vm.panel_nuevas.raw_data, function (x) {
+                        return x.id == orden_cancelada.id;
+                    });
+                    vm.panel_nuevas.total = vm.panel_nuevas.raw_data.length;
+                    vm.panel_nuevas.data = armarArrayPuntosVenta(vm.panel_nuevas.raw_data);
+                }
+                if (panel == 'aprobadas') {
+                    _.remove(vm.panel_aprobadas.raw_data, function (x) {
+                        return x.id == orden_cancelada.id;
+                    });
+                    vm.panel_aprobadas.total = vm.panel_aprobadas.raw_data.length;
+                    vm.panel_aprobadas.data = armarArrayPuntosVenta(vm.panel_aprobadas.raw_data);
+                }
+                if (panel == 'en_transito') {
+                    _.remove(vm.panel_en_transito.raw_data, function (x) {
+                        return x.id == orden_cancelada.id;
+                    });
+                    vm.panel_en_transito.total = vm.panel_en_transito.raw_data.length;
+                    vm.panel_en_transito.data = armarArrayPuntosVenta(vm.panel_en_transito.raw_data);
+                }
+                
+                //Agregar al panel finalizadas
+               
             });
         }
     }
