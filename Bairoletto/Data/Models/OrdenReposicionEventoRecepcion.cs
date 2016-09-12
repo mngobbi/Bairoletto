@@ -12,7 +12,7 @@ namespace Data
         {
             get
             {
-                return "Orden de reposición entregada el día " + evento.IndexedDateTime.Value.ToString("dd/MM/yyyy HH:mm");
+                return "Orden de reposición entregada el día " + evento.IndexedDateTime.Value.ToLocalTime().ToString("dd/MM/yyyy HH:mm");
             }
         }
 
