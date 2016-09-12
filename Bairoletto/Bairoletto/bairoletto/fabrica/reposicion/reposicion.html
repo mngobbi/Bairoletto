@@ -63,7 +63,7 @@
     </div>
 
     <div class="col-lg-3">
-        <div class="panel" ng-class="{'bai-dark-green': !repos.panel_finalizadas.loading, 'bai-light-grey': repos.panel_finalizadas.loading}" style="cursor:pointer">
+        <div class="panel" ng-class="{'bai-dark-green': !repos.panel_finalizadas.loading, 'bai-light-grey': repos.panel_finalizadas.loading}" style="cursor:pointer" ng-click="repos.abrirPanel('finalizadas')">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-3"><i class="fa fa-clock-o fa-5x"></i></div>
@@ -77,6 +77,9 @@
                 </div>
             </div>
         </div>
+        <div class="hidden-lg" ng-if="repos.panel_finalizadas.open">
+            <div ng-include="'/bairoletto/fabrica/reposicion/paneles/reposicion-finalizadas.html'"></div>
+        </div>
     </div>
 </div>
 <div class="row visible-lg-block">
@@ -89,6 +92,9 @@
     <div class="col-lg-6"></div>
     <div class="col-lg-6" ng-if="repos.panel_en_transito.open">
         <div ng-include="'/bairoletto/fabrica/reposicion/paneles/reposicion-entransito.html'"></div>
+    </div>
+    <div class="col-lg-6" ng-if="repos.panel_finalizadas.open">
+        <div ng-include="'/bairoletto/fabrica/reposicion/paneles/reposicion-finalizadas.html'"></div>
     </div>
 </div>
 

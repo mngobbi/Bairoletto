@@ -32,8 +32,8 @@
         vm.panel_finalizadas = {
             loading: false,
             open: false,
-            raw_data: [],
-            data: [],
+            canceladas_data: [],
+            entregadas_data: [],
             total: 0,
         };
 
@@ -91,9 +91,13 @@
                 reposicionService.entregadas(),
                 reposicionService.canceladas()
             ]).then(function (data) {
-                vm.panel_finalizadas.data = data[0].concat(data[1]);
-                vm.panel_finalizadas.total = vm.panel_finalizadas.data.length;
+                vm.panel_finalizadas.total = data[0].length + data[1].length;
+                vm.panel_finalizadas.entregadas_data = data[0];
+                vm.panel_finalizadas.canceladas_data = data[1];
                 vm.panel_finalizadas.loading = false;
+
+                vm.panel_finalizadas.canceladas_data = _.orderBy(vm.panel_finalizadas.canceladas_data, 'fecha_procesada', 'desc');
+                vm.panel_finalizadas.entregadas_data = _.orderBy(vm.panel_finalizadas.entregadas_data, 'fecha_entrega', 'desc');
             }, function () {
                 vm.panel_finalizadas.loading = false;
             })
@@ -235,8 +239,10 @@
                     vm.panel_en_transito.data = armarArrayPuntosVenta(vm.panel_en_transito.raw_data);
                 }
                 
-                //Agregar al panel finalizadas
-               
+                //Agregar al panel finalizadas canceladas
+                vm.panel_finalizadas.canceladas_data.push(orden_cancelada);
+                vm.panel_finalizadas.total += 1;
+                vm.panel_finalizadas.canceladas_data = _.orderBy(vm.panel_finalizadas.canceladas_data, 'fecha_procesada', 'desc');
             });
         }
     }

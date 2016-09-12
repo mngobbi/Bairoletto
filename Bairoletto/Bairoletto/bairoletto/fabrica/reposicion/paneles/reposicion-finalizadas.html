@@ -1,10 +1,107 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
+﻿<div class="list-group">
+    <bai-panel-inside bai-main-color="'bai-dark-green'" bai-opened-color="'#053d3c'" bai-open="repos.open_entregadas" ng-click="repos.open_entregadas = !repos.open_entregadas">
+        <bai-info>
+            <div class="row">
+                <div class="col-xs-2 col-md-1">
+                    <span class="badge" ng-class="{'bai-badge-close': !repos.open_entregadas, 'bai-dark-green': repos.open_entregadas}">{{repos.panel_finalizadas.entregadas_data.length}}</span>
+                </div>
+                <div class="col-xs-10 col-md-11">Entregadas</div>
+            </div>
+        </bai-info>
+    </bai-panel-inside>
+    <div uib-collapse="!repos.open_entregadas">
+        <div class="list-group">
+            <div class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-6"><b>Punto de venta</b></div>
+                    <div class="col-xs-6"><b>Número de orden</b></div>
+                </div>
+            </div>
+            <div ng-repeat="r in repos.panel_finalizadas.entregadas_data">
+                <a href="" class="list-group-item" ng-click="repos.reposicionDetalle(r); r.open = !r.open">
+                    <div class="row">
+                        <div class="col-xs-6">{{r.punto_venta.codigo}}</div>
+                        <div class="col-xs-6">{{r.numero_orden}}</div>
+                    </div>
+                </a>
+                <div class="panel panel-default" uib-collapse="!r.open">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="row form-group">
+                                    <div class="col-xs-12">
+                                        <label><i class="fa fa-calendar"></i> Fecha entregado:</label>
+                                        {{r.fecha_entrega | date: 'dd/MM/yyyy HH:mm'}}
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-xs-12">
+                                        <label><i class="fa fa-shopping-cart"></i> Productos entregados:</label>
+                                        <ul>
+                                            <li ng-repeat="p in r.productos">
+                                                <span class="badge">{{p.cantidad_solicitada}}</span>&nbsp;{{p.producto.nombre}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-</body>
-</html>
+    <bai-panel-inside bai-main-color="'bai-dark-green'" bai-opened-color="'#053d3c'" bai-open="repos.open_canceladas" ng-click="repos.open_canceladas = !repos.open_canceladas">
+        <bai-info>
+            <div class="row">
+                <div class="col-xs-2 col-md-1">
+                    <span class="badge" ng-class="{'bai-badge-close': !repos.open_canceladas, 'bai-dark-green': repos.open_canceladas}">{{repos.panel_finalizadas.canceladas_data.length}}</span>
+                </div>
+                <div class="col-xs-10 col-md-11">Canceladas</div>
+            </div>
+        </bai-info>
+    </bai-panel-inside>
+    <div uib-collapse="!repos.open_canceladas">
+        <div class="list-group">
+            <div class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-6"><b>Punto de venta</b></div>
+                    <div class="col-xs-6"><b>Número de orden</b></div>
+                </div>
+            </div>
+            <div ng-repeat="r in repos.panel_finalizadas.canceladas_data">
+                <a href="" class="list-group-item" ng-click="repos.reposicionDetalle(r); r.open = !r.open">
+                    <div class="row">
+                        <div class="col-xs-6">{{r.punto_venta.codigo}}</div>
+                        <div class="col-xs-6">{{r.numero_orden}}</div>
+                    </div>
+                </a>
+                <div class="panel panel-default" uib-collapse="!r.open">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="row form-group">
+                                    <div class="col-xs-12">
+                                        <label><i class="fa fa-calendar"></i> Fecha cancelado:</label>
+                                        {{r.fecha_procesada | date: 'dd/MM/yyyy HH:mm'}}
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-xs-12">
+                                        <label><i class="fa fa-shopping-cart"></i> Productos solicitados:</label>
+                                        <ul>
+                                            <li ng-repeat="p in r.productos">
+                                                <span class="badge">{{p.cantidad_solicitada}}</span>&nbsp;{{p.producto.nombre}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
