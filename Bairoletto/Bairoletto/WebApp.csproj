@@ -124,6 +124,8 @@
     <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-entransito.html" />
     <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-finalizadas.html" />
     <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-nuevas.html" />
+    <Content Include="bairoletto\fabrica\reposicion\reposicion-agendar\reposicion-agendar.controller.js" />
+    <Content Include="bairoletto\fabrica\reposicion\reposicion-agendar\reposicion-agendar.html" />
     <Content Include="bairoletto\fabrica\reposicion\reposicion-aprobar\reposicion-aprobar.controller.js" />
     <Content Include="bairoletto\fabrica\reposicion\reposicion-aprobar\reposicion-aprobar.html" />
     <Content Include="bairoletto\fabrica\reposicion\reposicion-enviar\reposicion-enviar.controller.js" />

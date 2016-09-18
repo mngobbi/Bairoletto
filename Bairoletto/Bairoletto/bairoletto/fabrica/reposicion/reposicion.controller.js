@@ -42,6 +42,7 @@
         vm.reposicionAprobar = reposicionAprobar;
         vm.reposicionEnviar = reposicionEnviar;
         vm.reposicionCancelar = reposicionCancelar;
+        vm.reposicionAgendar = reposicionAgendar;
         vm.reposicionComentario = reposicionComentario;
 
         activate();
@@ -182,30 +183,33 @@
             });
         }
         function reposicionEnviar(r) {
-            var modalInstance = $uibModal.open({
-                templateUrl: '/bairoletto/fabrica/reposicion/reposicion-enviar/reposicion-enviar.html',
-                controller: 'EnviarReposicionController',
-                controllerAs: 'enviar',
-                resolve: {
-                    reposicion: function () {
-                        return r;
+            if (typeof r.fecha_entrega_estimada !== 'undefined') {
+                var modalInstance = $uibModal.open({
+                    templateUrl: '/bairoletto/fabrica/reposicion/reposicion-enviar/reposicion-enviar.html',
+                    controller: 'EnviarReposicionController',
+                    controllerAs: 'enviar',
+                    resolve: {
+                        reposicion: function () {
+                            return r;
+                        }
                     }
-                }
-            });
-
-            modalInstance.result.then(function (orden_enviada) {
-                //Eliminar del panel aprobadas
-                _.remove(vm.panel_aprobadas.raw_data, function (x) {
-                    return x.id == orden_enviada.id;
                 });
-                vm.panel_aprobadas.total = vm.panel_aprobadas.raw_data.length;
-                vm.panel_aprobadas.data = armarArrayPuntosVenta(vm.panel_aprobadas.raw_data);
 
-                //Agregar al panel en transito
-                vm.panel_en_transito.raw_data.push(orden_enviada);
-                vm.panel_en_transito.total = vm.panel_en_transito.raw_data.length;
-                vm.panel_en_transito.data = armarArrayPuntosVenta(vm.panel_en_transito.raw_data);
-            });
+                modalInstance.result.then(function (orden_enviada) {
+                    //Eliminar del panel aprobadas
+                    _.remove(vm.panel_aprobadas.raw_data, function (x) {
+                        return x.id == orden_enviada.id;
+                    });
+                    vm.panel_aprobadas.total = vm.panel_aprobadas.raw_data.length;
+                    vm.panel_aprobadas.data = armarArrayPuntosVenta(vm.panel_aprobadas.raw_data);
+
+                    //Agregar al panel en transito
+                    vm.panel_en_transito.raw_data.push(orden_enviada);
+                    vm.panel_en_transito.total = vm.panel_en_transito.raw_data.length;
+                    vm.panel_en_transito.data = armarArrayPuntosVenta(vm.panel_en_transito.raw_data);
+                });
+            } else
+                toastr.warning("Se debe ingresar una fecha de entrega estimada");
         }
         function reposicionCancelar(r, panel) {
             var modalInstance = $uibModal.open({
@@ -250,16 +254,36 @@
                 vm.panel_finalizadas.canceladas_data = _.orderBy(vm.panel_finalizadas.canceladas_data, 'fecha_procesada', 'desc');
             });
         }
-        function reposicionComentario(reposicion) {
-            reposicion.cargando = true;
-            reposicionService.comentario(reposicion.id, reposicion.comentario_nuevo).then(function (evento_comentario) {
+        function reposicionAgendar(r) {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/bairoletto/fabrica/reposicion/reposicion-agendar/reposicion-agendar.html',
+                controller: 'AgendarReposicionController',
+                controllerAs: 'agenda',
+                resolve: {
+                    reposicion: function () {
+                        return r;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (orden_agendada) {
+                r = _.mergeWith(r, orden_agendada, function (objValue, srcValue) {
+                    if (_.isArray(objValue)) {
+                        return objValue = srcValue;
+                    }
+                });
+                console.log(r);
+            });
+        }
+        function reposicionComentario(r) {
+            r.cargando = true;
+            reposicionService.comentario(r.id, r.comentario_nuevo).then(function (evento_comentario) {
                 toastr.success('Comentario enviado correctamente');
-                reposicion.comentario_nuevo = '';
-                reposicion.eventos.unshift(evento_comentario);
-                console.log(reposicion);
-                reposicion.cargando = false;
+                r.comentario_nuevo = '';
+                r.eventos.unshift(evento_comentario);
+                r.cargando = false;
             }, function () {
-                reposicion.cargando = false;
+                r.cargando = false;
             })
         }
     }

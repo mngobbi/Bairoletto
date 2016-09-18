@@ -1,0 +1,33 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{agenda.title}}</h3>
+</div>
+<div class="modal-body" ng-form name="form">
+    <div class="row form-group">
+        <div class="col-sm-12" ng-class="{'has-error': form.fecha.$dirty && form.fecha.$invalid, 'has-success': form.fecha.$dirty && form.fecha.$valid }">
+            <h4><i class="fa fa-calendar"></i> Fecha estimada de entrega</h4>
+            <p class="input-group">
+                <input type="text" name="fecha" class="form-control" placeholder="dd/MM/yyyy" uib-datepicker-popup="dd/MM/yyyy" datepicker-options="agenda.date_options" ng-model="agenda.fecha_estimada" is-open="agenda.datepicker.opened" show-button-bar="false" ng-disabled="agenda.cargando" required/>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" ng-click="agenda.open()" ng-disabled="agenda.cargando">
+                        <i class="fa fa-calendar"></i>
+                    </button>
+                </span>
+            </p>
+            <div ng-messages="form.fecha.$dirty && form.fecha.$error" role="alert">
+                <div class="alert alert-danger"ng-message="required">Ingrese una fecha estimada de entrega</div>
+            </div>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-12">
+            <h4><i class="fa fa-comment-o"></i> Añadir comentario</h4>
+            <textarea class="form-control" rows="3" ng-model="agenda.comentario" ng-disabled="agenda.cargando"></textarea>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="agenda.agendar()" ng-disabled="agenda.cargando || !form.$valid">
+        <i class="fa fa-share-square-o" ng-if="!agenda.cargando"></i>
+        <i class="fa fa-spinner fa-spin" ng-if="agenda.cargando"></i>&nbsp;Agendar orden
+    </button>
+</div>
