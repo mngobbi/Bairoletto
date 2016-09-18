@@ -9,7 +9,8 @@ namespace Data
         cancelacion = 3,
         agenda = 5,
         en_transito = 7,
-        recepcion = 9
+        recepcion = 9,
+        comentario = 11
     }
 
     [Table("OrdenReposicionEventos")]

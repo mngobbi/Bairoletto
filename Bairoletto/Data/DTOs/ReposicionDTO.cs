@@ -97,6 +97,17 @@ namespace Data
         public string comentario { get; set; }
     }
 
+    public class ReposicionAgendarDTO
+    {
+        [Required]
+        public int reposicion_id { get; set; }
+
+        [Required]
+        public DateTime fecha_agenda { get; set; }
+
+        public string comentario { get; set; }
+    }
+
     public class ReposicionEnviarDTO
     {
         [Required]
@@ -108,7 +119,7 @@ namespace Data
         public string comentario;
     }
 
-    public class ReposicionRecepcionDTO
+    public class ReposicionComentarioDTO
     {
         [Required]
         public int reposicion_id { get; set; }

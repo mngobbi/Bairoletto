@@ -108,6 +108,8 @@
     <Compile Include="Models\OrdenReposicion.cs" />
     <Compile Include="Models\OrdenReposicionDetalle.cs" />
     <Compile Include="Models\OrdenReposicionEvento.cs" />
+    <Compile Include="Models\OrdenReposicionEventoAgenda.cs" />
+    <Compile Include="Models\OrdenReposicionEventoComentario.cs" />
     <Compile Include="Models\OrdenReposicionEventoRecepcion.cs" />
     <Compile Include="Models\OrdenReposicionEventoCancelacion.cs" />
     <Compile Include="Models\OrdenReposicionEventoConfirmacion.cs" />

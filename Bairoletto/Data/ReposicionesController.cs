@@ -42,7 +42,10 @@ namespace Data
         [HttpGet]
         public IHttpActionResult GetOrden(int id)
         {
-            OrdenReposicion orden = db.OrdenesReposicion.Where(x => x.Id == id).FirstOrDefault();
+            OrdenReposicion orden = db.OrdenesReposicion.Include(r => r.PuntoVenta)
+                                                        .Include(r => r.Productos)
+                                                        .Include(r => r.Camion)
+                                                        .Where(x => x.Id == id).FirstOrDefault();
 
             if (orden == null) return NotFound();
 
@@ -283,6 +286,26 @@ namespace Data
             return Ok(new ReposicionResumenDTO(orden, orden.PuntoVenta));
         }
 
+        [Route("{id:int}/agendar")]
+        [HttpPost]
+        [ResponseType(typeof(ReposicionResumenDTO))]
+        public IHttpActionResult PostAgendar(int id, ReposicionAgendarDTO agendar)
+        {
+            if (!ModelState.IsValid || id != agendar.reposicion_id) return BadRequest(ModelState);
+
+            OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
+            if (orden == null) return NotFound();
+
+            var ev = new OrdenReposicionEventoAgenda(orden, agendar.fecha_agenda, orden.FechaEntegaEstimada.Value, usuario_id, agendar.comentario);
+            db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
+
+            orden.FechaEntegaEstimada = agendar.fecha_agenda;
+
+            db.SaveChanges();
+
+            return Ok(new ReposicionResumenDTO(orden, orden.PuntoVenta));
+        }
+
         [Route("{id:int}/enviar")]
         [HttpPost]
         [ResponseType(typeof(ReposicionDTO))]
@@ -313,7 +336,7 @@ namespace Data
         [Route("{id:int}/recepcion")]
         [HttpPost]
         [ResponseType(typeof(ReposicionResumenDTO))]
-        public IHttpActionResult PostRecepcion(int id, ReposicionRecepcionDTO recepcion)
+        public IHttpActionResult PostRecepcion(int id, ReposicionComentarioDTO recepcion)
         {
             if (!ModelState.IsValid || id != recepcion.reposicion_id) return BadRequest(ModelState);
 
@@ -335,6 +358,23 @@ namespace Data
             db.SaveChanges();
 
             return Ok(new ReposicionResumenDTO(orden, orden.PuntoVenta));
+        }
+
+        [Route("{id:int}/comentario")]
+        [HttpPost]
+        [ResponseType(typeof(EventoDTO))]
+        public IHttpActionResult PostComentario(int id, ReposicionComentarioDTO comentario)
+        {
+            if (!ModelState.IsValid || id != comentario.reposicion_id) return BadRequest(ModelState);
+            OrdenReposicion orden = db.OrdenesReposicion.Where(x => x.Id == id).FirstOrDefault();
+            if (orden == null) return NotFound();
+
+            var ev = new OrdenReposicionEventoComentario(orden, usuario_id, comentario.comentario);
+            db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
+
+            db.SaveChanges();
+
+            return Ok(new EventoDTO(ev));
         }
 
         #endregion

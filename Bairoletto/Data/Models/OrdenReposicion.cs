@@ -86,6 +86,12 @@ namespace Data
                     case (int)OrdenReposicionEventoTipo.recepcion:
                         pubs.Add(new OrdenReposicionEventoRecepcion(ev));
                         break;
+                    case (int)OrdenReposicionEventoTipo.agenda:
+                        pubs.Add(new OrdenReposicionEventoAgenda(ev));
+                        break;
+                    case (int)OrdenReposicionEventoTipo.comentario:
+                        pubs.Add(new OrdenReposicionEventoComentario(ev));
+                        break;
                 }
             }
             return pubs;
