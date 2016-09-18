@@ -1,6 +1,4 @@
-﻿<div class="modal-header">
-    <h3 class="modal-title">{{agenda.title}}</h3>
-</div>
+﻿<bai-modal-header bai-title="agenda.title" bai-on-click="agenda.cerrar()"></bai-modal-header>
 <div class="modal-body" ng-form name="form">
     <div class="row form-group">
         <div class="col-sm-12" ng-class="{'has-error': form.fecha.$dirty && form.fecha.$invalid, 'has-success': form.fecha.$dirty && form.fecha.$valid }">

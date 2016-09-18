@@ -1,6 +1,4 @@
-﻿<div class="modal-header">
-    <h3 class="modal-title">{{nueva.title}}</h3>
-</div>
+﻿<bai-modal-header bai-title="nueva.title" bai-on-click="nueva.cerrar()"></bai-modal-header>
 <div class="modal-body" cg-busy="{promise: nueva.prom_repo, message: 'Enviando nueva orden de reposición ...'}">
     <div class="row form-group">
         <div class="col-sm-12">

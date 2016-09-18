@@ -118,6 +118,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bairoletto\core\components\bai-eventos\bai-eventos.component.js" />
+    <Content Include="bairoletto\core\components\bai-modal-header\bai-modal-header.component.html" />
+    <Content Include="bairoletto\core\components\bai-modal-header\bai-modal-header.component.js" />
     <Content Include="bairoletto\core\core.run.js" />
     <Content Include="bairoletto\core\layout\bai-panel-inside\bai-panel-inside.component.js" />
     <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-aprobadas.html" />
