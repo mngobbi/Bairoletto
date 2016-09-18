@@ -288,22 +288,25 @@ namespace Data
 
         [Route("{id:int}/agendar")]
         [HttpPost]
-        [ResponseType(typeof(ReposicionResumenDTO))]
+        [ResponseType(typeof(ReposicionDTO))]
         public IHttpActionResult PostAgendar(int id, ReposicionAgendarDTO agendar)
         {
             if (!ModelState.IsValid || id != agendar.reposicion_id) return BadRequest(ModelState);
 
-            OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
+            OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta)
+                                                        .Include(x => x.Productos)
+                                                        .Include(x => x.Eventos)
+                                                        .Where(x => x.Id == id).FirstOrDefault();
             if (orden == null) return NotFound();
 
-            var ev = new OrdenReposicionEventoAgenda(orden, agendar.fecha_agenda, orden.FechaEntegaEstimada.Value, usuario_id, agendar.comentario);
+            var ev = new OrdenReposicionEventoAgenda(orden, agendar.fecha_agenda, orden.FechaEntegaEstimada, usuario_id, agendar.comentario);
             db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             orden.FechaEntegaEstimada = agendar.fecha_agenda;
 
             db.SaveChanges();
 
-            return Ok(new ReposicionResumenDTO(orden, orden.PuntoVenta));
+            return Ok(new ReposicionDTO(orden, orden.PuntoVenta, orden.Productos));
         }
 
         [Route("{id:int}/enviar")]
@@ -313,7 +316,10 @@ namespace Data
         {
             if (!ModelState.IsValid || id != enviar.reposicion_id) return BadRequest(ModelState);
 
-            OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta).Where(x => x.Id == id).FirstOrDefault();
+            OrdenReposicion orden = db.OrdenesReposicion.Include(x => x.PuntoVenta)
+                                                        .Include(x => x.Productos)
+                                                        .Include(x => x.Eventos)
+                                                        .Where(x => x.Id == id).FirstOrDefault();
             if (orden == null) return NotFound();
             if (orden.Estado != OrdenReposicionEstado.confirmada) return BadRequest("La orden de reposición se encuentra en el estado incorrecto");
 
@@ -330,7 +336,7 @@ namespace Data
 
             db.SaveChanges();
 
-            return Ok(new ReposicionDTO(orden, orden.PuntoVenta, orden.Productos.ToArray(), camion));
+            return Ok(new ReposicionDTO(orden, orden.PuntoVenta, orden.Productos, camion));
         }
 
         [Route("{id:int}/recepcion")]

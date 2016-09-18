@@ -51,6 +51,12 @@ namespace Data
             eventos = new EventoDTO[] { };
         }
 
+        public ReposicionDTO(OrdenReposicion rep, PuntoVenta pv, IEnumerable<OrdenReposicionDetalle> prod) : base(rep, pv)
+        {
+            productos = prod.Select(x => new ProductoReposicionDTO(x, x.Producto)).ToArray();
+            eventos = rep.GetEventosPublicos().Select(x => new EventoDTO(x)).ToArray();
+        }
+
         public ReposicionDTO(OrdenReposicion rep, PuntoVenta pv, IEnumerable<OrdenReposicionDetalle> prod, Camion cam) : base(rep, pv)
         {
             productos = prod.Select(x => new ProductoReposicionDTO(x, x.Producto)).ToArray();

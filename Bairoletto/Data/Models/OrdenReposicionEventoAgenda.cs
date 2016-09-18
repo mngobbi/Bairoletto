@@ -8,7 +8,7 @@ namespace Data
         {
             get
             {
-                return "Próxima acción el " + evento.IndexedDateTime.Value.ToString("dd/MM/yyyy HH:mm");
+                return "Próxima acción el " + evento.IndexedDateTime.Value.ToString("dd/MM/yyyy");
             }
         }
 
@@ -17,7 +17,7 @@ namespace Data
 
         }
 
-        public OrdenReposicionEventoAgenda(OrdenReposicion r, DateTime fecha_agenda, DateTime fecha_actual, int usuario_id, string comentario = null): base()
+        public OrdenReposicionEventoAgenda(OrdenReposicion r, DateTime fecha_agenda, DateTime? fecha_actual, int usuario_id, string comentario = null): base()
         {
             evento = new OrdenReposicionEvento(r, OrdenReposicionEventoTipo.agenda, usuario_id, comentario);
             evento.IndexedDateTime = fecha_agenda;
