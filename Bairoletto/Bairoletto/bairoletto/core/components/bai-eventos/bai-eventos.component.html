@@ -1,8 +1,16 @@
 ﻿<div class="row">
     <hr />
     <div class="col-xs-12">
-        <label><i class="fa fa-history"></i> Historial de eventos:</label>
-        <ul class="timeline">
+        <div class="row" style="cursor:pointer" ng-click="$ctrl.open = !$ctrl.open">
+            <div class="col-xs-10">
+                <label><i class="fa fa-history"></i> Historial de eventos:</label>
+            </div>
+            <div class="col-xs-2 text-right">
+                <i class="fa fa-angle-left" ng-if="!$ctrl.open"></i>
+                <i class="fa fa-angle-down" ng-if="$ctrl.open"></i>
+            </div>
+        </div>
+        <ul class="timeline" uib-collapse="!$ctrl.open">
             <li class="timeline-inverted" ng-repeat="ev in $ctrl.baiEventos | orderBy: '-fecha'">
                 <div class="timeline-badge {{ev.color}}"><i class="fa {{ev.icono}}" style="color:white"></i></div>
                 <div class="timeline-panel" style="background-color:white">
