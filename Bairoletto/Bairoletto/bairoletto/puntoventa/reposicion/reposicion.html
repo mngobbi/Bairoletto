@@ -6,7 +6,7 @@
         <button class="btn btn-primary" ng-click="repos.nueva()"><i class="fa fa-plus"></i> Crear</button>
     </div>
 </div>
-<div class="row">
+<div class="row" cg-busy="{promise: repos.prom, message: 'Cargando ordenes de reposición ...'}">
     <div class="col-lg-6">
         <div ng-repeat="r in repos.ordenes_reposicion_proceso">
             <bai-reposicion-detalle ng-if="r.estado == 'nueva'" 
