@@ -18,7 +18,9 @@
             aprobar: aprobarOrden,
             cancelar: cancelarOrden,
             enviar: enviarOrden,
-            recepcion: recibirOrden
+            recepcion: recibirOrden,
+            agendar: agendarOrden,
+            comentario: comentarOrden
         };
 
         return service;
@@ -97,6 +99,21 @@
                 comentario: comentario
             }
             return $http.post('/api/reposiciones/' + rep_id + '/recepcion', obj).then(dataSuccess).catch(dataError);
+        }
+        function agendarOrden(rep_id, fecha_agenda, comentario) {
+            var obj = {
+                reposicion_id: rep_id,
+                fecha_agenda: fecha_agenda,
+                comentario: comentario
+            }
+            return $http.post('/api/reposiciones/' + rep_id + '/agendar', obj).then(dataSuccess).catch(dataError);
+        }
+        function comentarOrden(rep_id, comentario) {
+            var obj = {
+                reposicion_id: rep_id,
+                comentario: comentario
+            }
+            return $http.post('/api/reposiciones/' + rep_id + '/comentario', obj).then(dataSuccess).catch(dataError);
         }
 
         function dataSuccess(result) {

@@ -5,6 +5,7 @@
         // Angular modules
         'ngRoute',
         'ngAnimate',
+        'ngMessages',
         'ngSanitize',
 
         // 3rd Party Modules

@@ -42,6 +42,9 @@
                         x.icono = 'fa-check';
                         x.color = 'success';
                         break;
+                    case 'comentario':
+                        x.icono = 'fa-comment-o';
+                        break;
                 }
             })
         }

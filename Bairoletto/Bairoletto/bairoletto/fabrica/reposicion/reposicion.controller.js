@@ -5,7 +5,7 @@
         .module('app.fabrica')
         .controller('ReposicionController', ReposicionController);
 
-    function ReposicionController($q, $uibModal, reposicionService) {
+    function ReposicionController($q, $uibModal, toastr, reposicionService) {
         var vm = this;
 
         vm.panel_nuevas = {
@@ -42,6 +42,7 @@
         vm.reposicionAprobar = reposicionAprobar;
         vm.reposicionEnviar = reposicionEnviar;
         vm.reposicionCancelar = reposicionCancelar;
+        vm.reposicionComentario = reposicionComentario;
 
         activate();
 
@@ -142,7 +143,11 @@
                 r.loading = true;
                 reposicionService.getById(r.id).then(function (data) {
                     r.loading = false;
-                    r.productos = data.productos;
+                    r = _.mergeWith(r, data, function (objValue, srcValue) {
+                        if (_.isArray(objValue)) {
+                            return objValue = srcValue;
+                        }
+                    });
                     r.all_data = true;
                 }, function () {
                     r.loading = false;
@@ -244,6 +249,18 @@
                 vm.panel_finalizadas.total += 1;
                 vm.panel_finalizadas.canceladas_data = _.orderBy(vm.panel_finalizadas.canceladas_data, 'fecha_procesada', 'desc');
             });
+        }
+        function reposicionComentario(reposicion) {
+            reposicion.cargando = true;
+            reposicionService.comentario(reposicion.id, reposicion.comentario_nuevo).then(function (evento_comentario) {
+                toastr.success('Comentario enviado correctamente');
+                reposicion.comentario_nuevo = '';
+                reposicion.eventos.unshift(evento_comentario);
+                console.log(reposicion);
+                reposicion.cargando = false;
+            }, function () {
+                reposicion.cargando = false;
+            })
         }
     }
 })();
