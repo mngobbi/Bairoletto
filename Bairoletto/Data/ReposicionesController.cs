@@ -6,6 +6,7 @@ using System.Web.Http.Description;
 
 namespace Data
 {
+    [Authorize]
     [RoutePrefix("api/reposiciones")]
     public class ReposicionesController : ApiController
     {

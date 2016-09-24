@@ -4,6 +4,7 @@ using System.Web.Http;
 
 namespace Data
 {
+    [Authorize]
     [RoutePrefix("api/productos")]
     public class ProductosController : ApiController
     {
