@@ -13,6 +13,11 @@
                 controller: 'ReposicionController',
                 controllerAs: 'repos'
             })
+            .when('/login', {
+                controller: 'LoginController',
+                controllerAs: 'log',
+                templateUrl: '/bairoletto/login/login.html'
+            });
     }
 
 })();

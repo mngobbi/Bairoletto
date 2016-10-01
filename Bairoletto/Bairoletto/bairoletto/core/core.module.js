@@ -9,6 +9,8 @@
         'ngSanitize',
 
         // 3rd Party Modules
+        'auth0.lock', 
+        'angular-jwt',
         'angularMoment',
         'cgBusy',
         'ui.bootstrap',
