@@ -15,9 +15,9 @@
 
         }
 
-        public OrdenReposicionEventoEnTransito(OrdenReposicion r, int camion, int usuario_id, string comentario = null) : base()
+        public OrdenReposicionEventoEnTransito(OrdenReposicion r, int camion, UsuarioDTO usuario, string comentario = null) : base()
         {
-            evento = new OrdenReposicionEvento(r, OrdenReposicionEventoTipo.en_transito, usuario_id, comentario);
+            evento = new OrdenReposicionEvento(r, OrdenReposicionEventoTipo.en_transito, usuario, comentario);
             evento.IndexedString = camion.ToString();
         }
     }

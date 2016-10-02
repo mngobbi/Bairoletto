@@ -8,7 +8,7 @@ namespace Data
         public string descripcion { get; set; }
         public string nombre { get; set; }
         public string tipo { get; set; }
-        public UsuarioResumenDTO usuario { get; set; }
+        public UsuarioDTO usuario { get; set; }
 
         public EventoDTO() { }
 
@@ -18,7 +18,7 @@ namespace Data
             descripcion = ep.Descripcion;
             nombre = ep.Nombre;
             tipo = ep.Tipo;
-            if (ep.Usuario != null) usuario = new UsuarioResumenDTO(ep.Usuario);
+            if (ep.Usuario != null) usuario = ep.Usuario;
         }
     }
 

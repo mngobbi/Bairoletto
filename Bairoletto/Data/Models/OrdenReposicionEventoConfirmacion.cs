@@ -15,9 +15,9 @@
 
         }
 
-        public OrdenReposicionEventoConfirmacion(OrdenReposicion r, int usuario_id, string comentario = null) : base()
+        public OrdenReposicionEventoConfirmacion(OrdenReposicion r, UsuarioDTO usuario, string comentario = null) : base()
         {
-            evento = new OrdenReposicionEvento(r, OrdenReposicionEventoTipo.confirmacion, usuario_id, comentario);
+            evento = new OrdenReposicionEvento(r, OrdenReposicionEventoTipo.confirmacion, usuario, comentario);
         }
     }
 }

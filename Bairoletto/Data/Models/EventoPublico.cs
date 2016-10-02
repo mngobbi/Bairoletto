@@ -8,7 +8,7 @@ namespace Data
         string Nombre { get; }
         string Descripcion { get; }
         DateTime Fecha { get; }
-        Usuario Usuario { get; }
+        UsuarioDTO Usuario { get; }
     }
 
     public abstract class EventoPublicoBase : IEventoPublico
@@ -34,7 +34,7 @@ namespace Data
         {
             get { return evento.Fecha; }
         }
-        public virtual Usuario Usuario
+        public virtual UsuarioDTO Usuario
         {
             get { return evento.Usuario; }
         }

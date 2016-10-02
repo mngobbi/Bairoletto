@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Claims;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Security;
 
 namespace Data
 {
@@ -10,7 +13,6 @@ namespace Data
     [RoutePrefix("api/reposiciones")]
     public class ReposicionesController : ApiController
     {
-        private int usuario_id = 3;
         private DataContext db = new DataContext();
 
         #region "GETTERS"
@@ -246,7 +248,7 @@ namespace Data
             }
 
 
-            var ev = new OrdenReposicionEventoConfirmacion(orden, usuario_id, aprobar.comentario);
+            var ev = new OrdenReposicionEventoConfirmacion(orden, aprobar.usuario, aprobar.comentario);
             db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             orden.FechaProcesada = DateTime.UtcNow;
@@ -276,7 +278,7 @@ namespace Data
                 camion.Estado = CamionEstado.disponible;
             }
 
-            var ev = new OrdenReposicionEventoCancelacion(orden, rechazar.causa, usuario_id, rechazar.comentario);
+            var ev = new OrdenReposicionEventoCancelacion(orden, rechazar.causa, rechazar.usuario, rechazar.comentario);
             db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             orden.FechaProcesada = DateTime.UtcNow;
@@ -300,7 +302,7 @@ namespace Data
                                                         .Where(x => x.Id == id).FirstOrDefault();
             if (orden == null) return NotFound();
 
-            var ev = new OrdenReposicionEventoAgenda(orden, agendar.fecha_agenda, orden.FechaEntegaEstimada, usuario_id, agendar.comentario);
+            var ev = new OrdenReposicionEventoAgenda(orden, agendar.fecha_agenda, orden.FechaEntegaEstimada, agendar.usuario, agendar.comentario);
             db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             orden.FechaEntegaEstimada = agendar.fecha_agenda;
@@ -327,7 +329,7 @@ namespace Data
             Camion camion = db.Camiones.Where(x => x.Id == enviar.camion_id && x.Estado == CamionEstado.disponible).FirstOrDefault();
             if (camion == null) return NotFound();
 
-            var ev = new OrdenReposicionEventoEnTransito(orden, camion.Numero, usuario_id, enviar.comentario);
+            var ev = new OrdenReposicionEventoEnTransito(orden, camion.Numero, enviar.usuario, enviar.comentario);
             db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             orden.CamionId = camion.Id;
@@ -343,7 +345,7 @@ namespace Data
         [Route("{id:int}/recepcion")]
         [HttpPost]
         [ResponseType(typeof(ReposicionResumenDTO))]
-        public IHttpActionResult PostRecepcion(int id, ReposicionComentarioDTO recepcion)
+        public IHttpActionResult PostRecepcion(int id, ReposicionBasicaDTO recepcion)
         {
             if (!ModelState.IsValid || id != recepcion.reposicion_id) return BadRequest(ModelState);
 
@@ -359,7 +361,7 @@ namespace Data
 
             camion.Estado = CamionEstado.disponible;
 
-            var ev = new OrdenReposicionEventoRecepcion(orden, orden.FechaEntrega, usuario_id, recepcion.comentario);
+            var ev = new OrdenReposicionEventoRecepcion(orden, orden.FechaEntrega, recepcion.usuario, recepcion.comentario);
             db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             db.SaveChanges();
@@ -370,13 +372,13 @@ namespace Data
         [Route("{id:int}/comentario")]
         [HttpPost]
         [ResponseType(typeof(EventoDTO))]
-        public IHttpActionResult PostComentario(int id, ReposicionComentarioDTO comentario)
+        public IHttpActionResult PostComentario(int id, ReposicionBasicaDTO comentario)
         {
             if (!ModelState.IsValid || id != comentario.reposicion_id) return BadRequest(ModelState);
             OrdenReposicion orden = db.OrdenesReposicion.Where(x => x.Id == id).FirstOrDefault();
             if (orden == null) return NotFound();
 
-            var ev = new OrdenReposicionEventoComentario(orden, usuario_id, comentario.comentario);
+            var ev = new OrdenReposicionEventoComentario(orden, comentario.usuario, comentario.comentario);
             db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
             db.SaveChanges();

@@ -12,7 +12,8 @@ namespace Data
         private DataContext db = new DataContext();
 
         public int Id { get; set; }
-        public int UsuarioId { get; set; }
+        public string UsuarioId { get; set; }
+        public string UsuarioNombre { get; set; }
 
         public DateTime Fecha { get; set; }
         public int Tipo { get; set; }
@@ -25,10 +26,9 @@ namespace Data
         public DateTime? DateTime2 { get; set; }
 
         [NotMapped]
-        public Usuario Usuario
+        public UsuarioDTO Usuario
         {
-            get { return db.Usuarios.Find(UsuarioId); }
+            get { return new UsuarioDTO(UsuarioId, UsuarioNombre); }
         }
-
     }
 }

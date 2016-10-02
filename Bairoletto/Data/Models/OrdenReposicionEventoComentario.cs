@@ -15,9 +15,9 @@
 
         }
 
-        public OrdenReposicionEventoComentario(OrdenReposicion r, int usuario_id, string comentario): base()
+        public OrdenReposicionEventoComentario(OrdenReposicion r, UsuarioDTO usuario, string comentario): base()
         {
-            evento = new OrdenReposicionEvento(r, OrdenReposicionEventoTipo.comentario, usuario_id, comentario);
+            evento = new OrdenReposicionEvento(r, OrdenReposicionEventoTipo.comentario, usuario, comentario);
         }
     }
 }

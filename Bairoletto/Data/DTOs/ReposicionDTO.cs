@@ -82,54 +82,37 @@ namespace Data
         public ProductoReposicionNuevoDTO[] productos { get; set; }
     }
 
-    public class ReposicionAprobarDTO
+    public class ReposicionBasicaDTO
     {
         [Required]
         public int reposicion_id { get; set; }
 
-        public DateTime? fecha_entrega_estimada { get; set; }
+        [Required]
+        public UsuarioDTO usuario { get; set; }
 
         public string comentario { get; set; }
     }
 
-    public class ReposicionRechazarDTO
-    {
-        [Required]
-        public int reposicion_id { get; set; }
+    public class ReposicionAprobarDTO : ReposicionBasicaDTO
+    {     
+        public DateTime? fecha_entrega_estimada { get; set; }
+    }
 
+    public class ReposicionRechazarDTO : ReposicionBasicaDTO
+    {
         [Required]
         public OrdenReposicionCancelacionCausa causa { get; set; }
-
-        public string comentario { get; set; }
     }
 
-    public class ReposicionAgendarDTO
+    public class ReposicionAgendarDTO : ReposicionBasicaDTO
     {
-        [Required]
-        public int reposicion_id { get; set; }
-
         [Required]
         public DateTime fecha_agenda { get; set; }
-
-        public string comentario { get; set; }
     }
 
-    public class ReposicionEnviarDTO
+    public class ReposicionEnviarDTO : ReposicionBasicaDTO
     {
-        [Required]
-        public int reposicion_id { get; set; }
-
         [Required]
         public int camion_id { get; set; }
-
-        public string comentario;
-    }
-
-    public class ReposicionComentarioDTO
-    {
-        [Required]
-        public int reposicion_id { get; set; }
-
-        public string comentario { get; set; }
     }
 }

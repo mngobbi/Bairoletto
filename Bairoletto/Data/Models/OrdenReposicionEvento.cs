@@ -24,7 +24,7 @@ namespace Data
             Fecha = DateTime.UtcNow;
         }
 
-        public OrdenReposicionEvento(Evento ev, OrdenReposicion r)
+        public OrdenReposicionEvento(Evento ev, OrdenReposicion r )
         {
             this.Id = ev.Id;
             this.OrdenReposicion = r;
@@ -32,17 +32,19 @@ namespace Data
             this.Descripcion = ev.Descripcion;
             this.Tipo = ev.Tipo;
             this.UsuarioId = ev.UsuarioId;
+            this.UsuarioNombre = ev.UsuarioNombre;
             this.IndexedDateTime = ev.IndexedDateTime;
             this.IndexedString = ev.IndexedString;
             this.DateTime2 = ev.DateTime2;
             this.String2 = ev.String2;
         }
 
-        public OrdenReposicionEvento(OrdenReposicion r, OrdenReposicionEventoTipo tipo_evento, int usuario_id, string comentario = null) : this()
+        public OrdenReposicionEvento(OrdenReposicion r, OrdenReposicionEventoTipo tipo_evento, UsuarioDTO usu, string comentario = null) : this()
         {
             Tipo = (int)tipo_evento;
             OrdenReposicion = r;
-            UsuarioId = usuario_id;
+            UsuarioId = usu.id;
+            UsuarioNombre = usu.nombre_usuario;
 
             if (comentario != null) Descripcion = comentario;
         }

@@ -49,6 +49,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
@@ -99,6 +100,14 @@
     <Compile Include="Migrations\201608272245010_ProductoStock.cs" />
     <Compile Include="Migrations\201608272245010_ProductoStock.Designer.cs">
       <DependentUpon>201608272245010_ProductoStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610021859275_AjustarEventos.cs" />
+    <Compile Include="Migrations\201610021859275_AjustarEventos.Designer.cs">
+      <DependentUpon>201610021859275_AjustarEventos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610022204376_AjustarEventos1.cs" />
+    <Compile Include="Migrations\201610022204376_AjustarEventos1.Designer.cs">
+      <DependentUpon>201610022204376_AjustarEventos1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Camion.cs" />
@@ -151,6 +160,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608272245010_ProductoStock.resx">
       <DependentUpon>201608272245010_ProductoStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610021859275_AjustarEventos.resx">
+      <DependentUpon>201610021859275_AjustarEventos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610022204376_AjustarEventos1.resx">
+      <DependentUpon>201610022204376_AjustarEventos1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -39,9 +39,9 @@ namespace Data
 
         }
 
-        public OrdenReposicionEventoCancelacion(OrdenReposicion r, OrdenReposicionCancelacionCausa causa, int usuario_id, string comentario = null) : base()
+        public OrdenReposicionEventoCancelacion(OrdenReposicion r, OrdenReposicionCancelacionCausa causa, UsuarioDTO usuario, string comentario = null) : base()
         {
-            evento = new OrdenReposicionEvento(r, OrdenReposicionEventoTipo.cancelacion, usuario_id, comentario);
+            evento = new OrdenReposicionEvento(r, OrdenReposicionEventoTipo.cancelacion, usuario, comentario);
             evento.IndexedString = causa.ToString();
         }
     }
