@@ -5,7 +5,7 @@
         .module('app.core')
         .config(config);
 
-    function config($animateProvider, toastrConfig, $httpProvider, lockProvider, jwtOptionsProvider, jwtInterceptorProvide) {
+    function config($animateProvider, toastrConfig, $httpProvider, lockProvider, jwtOptionsProvider) {
 
         //Animate config
         $animateProvider.classNameFilter(/animate-|ui-select-/);
@@ -29,7 +29,10 @@
         jwtOptionsProvider.config({
             tokenGetter: function () {
                 return localStorage.getItem('id_token');
-            }
+            },
+            //unauthenticatedRedirectPath: ['$window', function ($window) {
+            //    $window.location.href = "/bairoletto/login/login.html";
+            //}]
         });
 
         $httpProvider.interceptors.push('jwtInterceptor');

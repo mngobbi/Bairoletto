@@ -1,0 +1,42 @@
+﻿<br /><br />
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2>General</h2>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-4 col-md-3 text-center">
+                        <img src="{{vm.user_profile.picture}}" class="img-circle" style="max-height:120px" />
+                    </div>
+                    <div class="col-sm-8 col-md-9">
+                        <h3>{{vm.user_profile.nombre_usuario}}</h3>
+                        <h6>Email: {{vm.user_profile.email}}</h6>
+                        <h6>Teléfono: {{vm.user_profile.user_metadata.telefono}}</h6>
+                        <h6>Puesto: {{vm.user_profile.user_metadata.puesto}}</h6>
+                        <a style="cursor:pointer;font-size:12px" ng-click="vm.mas_info = !vm.mas_info">
+                            <i class="fa fa-plus" ng-if="!vm.mas_info"></i>
+                            <i class="fa fa-minus" ng-if="vm.mas_info"></i>
+                            &nbsp;info
+                        </a>
+                    </div>
+                </div>
+                <div uib-collapse="!vm.mas_info">
+                    <br />
+                    <h3>{{vm.user_profile.entidad.titulo}}</h3>
+                    <hr />
+                    <div class="row">
+                        <div class="col-xs-11 col-xs-offset-1">
+                            <h4>{{vm.user_profile.entidad.nombre}}</h4>
+                            <h6 ng-if="vm.user_profile.entidad.fecha_alta">Fecha de alta: {{vm.user_profile.entidad.fecha_alta | date: 'dd/MM/yyyy'}}</h6>
+                            <h6>Dirección: {{vm.user_profile.entidad.direccion}}</h6>
+                            <h6>Teléfono: {{vm.user_profile.entidad.telefono}}</h6>
+                            <h6>Ubicación: {{vm.user_profile.entidad.ciudad}} - {{vm.user_profile.entidad.provincia}} - {{vm.user_profile.entidad.pais}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

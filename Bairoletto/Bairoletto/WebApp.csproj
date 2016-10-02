@@ -150,6 +150,8 @@
     <Content Include="bairoletto\core\components\bai-modal-header\bai-modal-header.component.js" />
     <Content Include="bairoletto\core\core.run.js" />
     <Content Include="bairoletto\core\layout\bai-panel-inside\bai-panel-inside.component.js" />
+    <Content Include="bairoletto\core\user-profile\user-profile.controller.js" />
+    <Content Include="bairoletto\core\user-profile\user-profile.html" />
     <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-aprobadas.html" />
     <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-entransito.html" />
     <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-finalizadas.html" />

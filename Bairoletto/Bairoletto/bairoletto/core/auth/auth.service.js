@@ -5,13 +5,15 @@
         .module('app.core')
         .factory('authService', authService);
 
-    function authService($rootScope, lock, authManager) {
+    function authService($rootScope, lock, authManager, $window) {
         var service = {
             userProfile: userProfile,
             login: login,
             logout: logout,
             registerAuthenticationListener: registerAuthenticationListener
         };
+
+        return service;
 
         var userProfile = JSON.parse(localStorage.getItem('profile')) || {};
 
@@ -39,6 +41,11 @@
                     if (error) {
                         console.log(error);
                     }
+                    if (typeof profile.app_metadata.planta_elaboracion_id !== 'undefined')
+                        $window.location.href = "/bairoletto/fabrica/fabrica.html#";
+
+                    if (typeof profile.app_metadata.punto_venta_id !== 'undefined')
+                        $window.location.href = "/bairoletto/puntoventa/puntoventa.html#";
 
                     localStorage.setItem('profile', JSON.stringify(profile));
                     $rootScope.$broadcast('userProfileSet', profile);
