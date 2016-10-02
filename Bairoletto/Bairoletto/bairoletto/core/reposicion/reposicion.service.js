@@ -73,7 +73,8 @@
             var obj = {
                 reposicion_id: rep_id,
                 fecha_entrega_estimada: fecha_estimada,
-                comentario: comentario
+                comentario: comentario,
+                usuario: getUsuario()
             }
             return $http.post('/api/reposiciones/'+ rep_id +'/aprobar', obj).then(dataSuccess).catch(dataError);
         }
@@ -81,7 +82,8 @@
             var obj = {
                 reposicion_id: rep_id,
                 causa: causa,
-                comentario: comentario
+                comentario: comentario,
+                usuario: getUsuario()
             }
             return $http.post('/api/reposiciones/' + rep_id + '/rechazar', obj).then(dataSuccess).catch(dataError);
         }
@@ -89,14 +91,16 @@
             var obj = {
                 reposicion_id: rep_id,
                 camion_id: cam_id,
-                comentario: comentario
+                comentario: comentario,
+                usuario: getUsuario()
             }
             return $http.post('/api/reposiciones/' + rep_id + '/enviar', obj).then(dataSuccess).catch(dataError);
         }
         function recibirOrden(rep_id, comentario) {
             var obj = {
                 reposicion_id: rep_id,
-                comentario: comentario
+                comentario: comentario,
+                usuario: getUsuario()
             }
             return $http.post('/api/reposiciones/' + rep_id + '/recepcion', obj).then(dataSuccess).catch(dataError);
         }
@@ -104,16 +108,27 @@
             var obj = {
                 reposicion_id: rep_id,
                 fecha_agenda: fecha_agenda,
-                comentario: comentario
+                comentario: comentario,
+                usuario: getUsuario()
             }
             return $http.post('/api/reposiciones/' + rep_id + '/agendar', obj).then(dataSuccess).catch(dataError);
         }
         function comentarOrden(rep_id, comentario) {
             var obj = {
                 reposicion_id: rep_id,
-                comentario: comentario
+                comentario: comentario,
+                usuario: getUsuario()
             }
             return $http.post('/api/reposiciones/' + rep_id + '/comentario', obj).then(dataSuccess).catch(dataError);
+        }
+
+        function getUsuario() {
+            var user_profile = JSON.parse(localStorage.getItem('profile'));
+            var user = {
+                id: user_profile.identities[0].user_id,
+                nombre_usuario: user_profile.nombre_usuario
+            }
+            return user;
         }
 
         function dataSuccess(result) {
