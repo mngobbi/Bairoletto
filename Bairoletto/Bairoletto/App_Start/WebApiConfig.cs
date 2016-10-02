@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Bairoletto.App_Start;
+using Newtonsoft.Json;
+using System.Web.Configuration;
 using System.Web.Http;
 
 namespace Bairoletto
@@ -25,6 +27,15 @@ namespace Bairoletto
 
             //Remove XML Formatter
             config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+            var clientID = WebConfigurationManager.AppSettings["auth0:ClientId"];
+            var clientSecret = WebConfigurationManager.AppSettings["auth0:ClientSecret"];
+
+            config.MessageHandlers.Add(new JsonWebTokenValidationHandler()
+            {
+                Audience = clientID,
+                SymmetricKey = clientSecret
+            });
         }
     }
 }
