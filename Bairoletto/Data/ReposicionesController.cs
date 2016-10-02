@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-using System.Security.Claims;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
-using System.Web.Security;
 
 namespace Data
 {
