@@ -7,8 +7,6 @@
 
     function RecibirReposicionController($uibModalInstance, toastr, reposicionService, reposicion) {
 
-        var pv_id = 2;
-
         var vm = this;
         vm.title = 'Marcar recepción';
 

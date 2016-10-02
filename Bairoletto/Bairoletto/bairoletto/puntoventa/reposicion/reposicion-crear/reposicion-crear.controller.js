@@ -5,9 +5,7 @@
         .module('app.puntoventa')
         .controller('CrearReposicionController', CrearReposicionController);
 
-    function CrearReposicionController($uibModalInstance, toastr, productoService, reposicionService) {
-
-        var pv_id = 2;
+    function CrearReposicionController($uibModalInstance, toastr, productoService, reposicionService, pv_id) {
 
         var vm = this;
         vm.title = 'Crear nueva orden de reposición';

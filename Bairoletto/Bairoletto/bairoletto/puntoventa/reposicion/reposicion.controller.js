@@ -5,9 +5,9 @@
         .module('app.puntoventa')
         .controller('ReposicionController', ReposicionController);
 
-    function ReposicionController($uibModal, reposicionService) {
+    function ReposicionController($uibModal, reposicionService, authService) {
 
-        var pv_id = 2;
+        var pv_id = JSON.parse(localStorage.getItem('profile')).punto_venta_id;
 
         var vm = this;
         vm.ordenes_reposicion_proceso = [];
@@ -35,7 +35,12 @@
                 templateUrl: '/bairoletto/puntoventa/reposicion/reposicion-crear/reposicion-crear.html',
                 controller: 'CrearReposicionController',
                 controllerAs: 'nueva',
-                size: 'lg'
+                size: 'lg',
+                resolve: {
+                    pv_id: function () {
+                        return pv_id;
+                    }
+                }
             });
 
             modalInstance.result.then(function (nueva_orden) {
