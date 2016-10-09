@@ -152,6 +152,7 @@
     <Content Include="bairoletto\core\layout\bai-panel-inside\bai-panel-inside.component.js" />
     <Content Include="bairoletto\core\user-profile\user-profile.controller.js" />
     <Content Include="bairoletto\core\user-profile\user-profile.html" />
+    <Content Include="bairoletto\fabrica\fabrica.html" />
     <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-aprobadas.html" />
     <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-entransito.html" />
     <Content Include="bairoletto\fabrica\reposicion\paneles\reposicion-finalizadas.html" />
@@ -188,7 +189,7 @@
     <Content Include="css\style.css" />
     <Content Include="css\timeline.css" />
     <Content Include="Global.asax" />
-    <Content Include="bairoletto\fabrica\fabrica.html" />
+    <Content Include="gulpfile.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="bairoletto\fabrica\fabrica.module.js" />
     <Content Include="bairoletto\fabrica\fabrica.config.js" />

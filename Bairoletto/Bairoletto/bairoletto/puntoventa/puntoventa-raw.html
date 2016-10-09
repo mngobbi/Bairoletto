@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Punto-venta</title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="/css/sb-admin-2.css" />
+    <link rel="stylesheet" href="/css/timeline.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/bai-external.css" />
+
+    <script src="/js/bai-angular.js"></script>
+    <script src="https://cdn.auth0.com/js/lock/10.2/lock.min.js"></script>
+
+</head>
+<body ng-app="app.puntoventa">
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom:0">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/">Bairoletto</a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown" style="float:right">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#/"><i class="fa fa-user fa-fw"></i> Mi perfil</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/bairoletto/login/login.html" ng-click="authService.logout()">Salir</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+       
+        <div class="navbar-default sidebar">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href=""><i class="fa fa-usd fa-fw"></i> Administración de ventas<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="">Nuevo pedido</a></li>
+                            <li><a href="">Pendientes de atención</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#/reposiciones"><i class="fa fa-truck fa-fw"></i> Ordenes de reposición</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-shopping-cart fa-fw"></i> Productos<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="">Ver detalle de producto</a></li>
+                            <li><a href="">Consultar stock</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/sb-admin-2.js"></script>
+    <script src="/js/bai-external.js"></script>
+
+    <!-- build:js ../../js/bai-pv-core.js -->
+    <script src="/bairoletto/core/core.module.js"></script>
+    <script src="/bairoletto/core/core.config.js"></script>
+    <script src="/bairoletto/core/core.run.js"></script>
+    <script src="/bairoletto/core/auth/auth.service.js"></script>
+    <script src="/bairoletto/core/producto/producto.service.js"></script>
+    <script src="/bairoletto/core/reposicion/reposicion.service.js"></script>
+    <script src="/bairoletto/core/components/bai-eventos/bai-eventos.component.js"></script>
+    <script src="/bairoletto/core/components/bai-modal-header/bai-modal-header.component.js"></script>
+    <script src="/bairoletto/core/user-profile/user-profile.controller.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js ../../js/bai-pv.js -->
+    <script src="/js/bai-templates.js"></script>
+    <script src="/bairoletto/puntoventa/puntoventa.module.js"></script>
+    <script src="/bairoletto/puntoventa/puntoventa.config.js"></script>
+    <script src="/bairoletto/puntoventa/reposicion/reposicion.controller.js"></script>
+    <script src="/bairoletto/puntoventa/reposicion/reposicion-detalle/reposicion-detalle.component.js"></script>
+    <script src="/bairoletto/puntoventa/reposicion/reposicion-crear/reposicion-crear.controller.js"></script>
+    <script src="/bairoletto/puntoventa/reposicion/reposicion-recepcion/reposicion-recepcion.controller.js"></script>
+    <!-- endbuild -->
+
+
+</body>
+</html>
