@@ -118,7 +118,7 @@ gulp.task('master-external-css', function () {
     return gulp.src([
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
         'node_modules/angular-busy/dist/angular-busy.min.css',
-        'node_modules/angular-toastr/dist/angular-toastr.min.css',
+        'node_modules/angular-toastr/dist/angular-toastr.css',
         'node_modules/angular-xeditable/dist/css/xeditable.min.css',
         'node_modules/font-awesome/css/font-awesome.min.css',
         'node_modules/metismenu/dist/metisMenu.min.css',
