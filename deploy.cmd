@@ -74,8 +74,8 @@ IF /I "Bairoletto.sln" NEQ "" (
 )
 
 :: 4. Install npm packages
-echo Installing npm packages
 IF EXIST "%DEPLOYMENT_SOURCE%\WebApp\package.json" (
+  echo package.json found. Installing npm packages
   pushd "%DEPLOYMENT_SOURCE%\WebApp"
   call :ExecuteCmd npm install --production
   IF !ERRORLEVEL! NEQ 0 goto error
@@ -83,10 +83,10 @@ IF EXIST "%DEPLOYMENT_SOURCE%\WebApp\package.json" (
 )
 
 :: 5. Run gulp default task
-echo Running gulp default
 IF EXIST "%DEPLOYMENT_SOURCE%\WebApp\gulpfile.js" (
+ echo gulpfile found. Running gulp default
  pushd "%DEPLOYMENT_SOURCE%\WebApp"
- call gulp default
+ call :ExecuteCmd gulp default
  IF !ERRORLEVEL! NEQ 0 goto error
  popd
  )
