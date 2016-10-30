@@ -6,10 +6,6 @@ WebApp/fonts/*
 WebApp/js/bai*.js
 WebApp/css/bai*.css
 
-WebApp/bairoletto/fabrica/fabrica.html
-WebApp/bairoletto/puntoventa/puntoventa.html
-WebApp/bairoletto/login/login.html
-
 WebApp/rev-manifest.json
 
 # User-specific files

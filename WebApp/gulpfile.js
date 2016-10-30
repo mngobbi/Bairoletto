@@ -7,10 +7,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var ngAnnotate = require('gulp-ng-annotate');
-var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
-var rev = require('gulp-rev');
-var revReplace = require('gulp-rev-replace');
 var del = require('del');
 var merge = require('merge-stream');
 var runSequence = require('run-sequence');
@@ -27,12 +24,7 @@ gulp.task('templates', function () {
 gulp.task('default', function (callback) {
     runSequence(
         ['master-angular-js', 'master-external-js', 'master-external-css', 'fonts', 'clean', 'templates'],
-        'useref-bai-fabrica',
-        'useref-bai-puntoventa',
-        'useref-bai-login',
         'uglify',
-        'rev',
-        'revreplace',
         callback);
 });
 
@@ -57,28 +49,6 @@ gulp.task('fonts', function () {
     ])
         .pipe(gulp.dest('fonts'));
 });
-
-gulp.task('useref-bai-fabrica', function () {
-    return gulp.src('bairoletto/fabrica/fabrica-raw.html')
-        .pipe(rename("fabrica.html"))
-        .pipe(useref({ searchPath: './' }))
-        .pipe(gulp.dest('bairoletto/fabrica'));
-});
-
-gulp.task('useref-bai-puntoventa', function () {
-    return gulp.src('bairoletto/puntoventa/puntoventa-raw.html')
-        .pipe(rename("puntoventa.html"))
-        .pipe(useref({ searchPath: './' }))
-        .pipe(gulp.dest('bairoletto/puntoventa'));
-});
-
-gulp.task('useref-bai-login', function () {
-    return gulp.src('bairoletto/login/login-raw.html')
-        .pipe(rename("login.html"))
-        .pipe(useref({ searchPath: './' }))
-        .pipe(gulp.dest('bairoletto/login'));
-});
-
 
 gulp.task('master-angular-js', function () {
     return gulp.src([
@@ -140,29 +110,6 @@ gulp.task('uglify', function () {
       }))
       .pipe(uglify())
       .pipe(gulp.dest(''));
-});
-
-gulp.task('rev', function () {
-    return gulp.src([
-         './js/bai-fab*.js',
-         './js/bai-pv*.js',
-         './js/bai-log*.js'
-    ], { base: './' })
-      .pipe(rev())
-      .pipe(gulp.dest('./'))
-      .pipe(rev.manifest())
-      .pipe(gulp.dest('./'));
-});
-
-gulp.task('revreplace', function () {
-    var manifest = gulp.src('./rev-manifest.json', { base: './' });
-    return gulp.src([
-        './bairoletto/fabrica/fabrica.html',
-        './bairoletto/puntoventa/puntoventa.html',
-        './bairoletto/login/login.html'
-    ], { base: './' })
-      .pipe(revReplace({ manifest: manifest, replaceInExtensions: ['.js', '.css', '.html'] }))
-      .pipe(gulp.dest('./'));
 });
 
 gulp.task('clean', function () {
