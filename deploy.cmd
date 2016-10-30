@@ -77,7 +77,7 @@ IF /I "Bairoletto.sln" NEQ "" (
 IF EXIST "%DEPLOYMENT_SOURCE%\WebApp\package.json" (
   echo package.json found. Installing npm packages
   pushd "%DEPLOYMENT_SOURCE%\WebApp"
-  call :ExecuteCmd npm install --production
+  call :ExecuteCmd npm install
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
