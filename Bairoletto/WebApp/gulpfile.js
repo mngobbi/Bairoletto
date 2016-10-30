@@ -24,7 +24,7 @@ gulp.task('templates', function () {
       .pipe(gulp.dest('js'));
 });
 
-gulp.task('prod', function (callback) {
+gulp.task('default', function (callback) {
     runSequence(
         ['master-angular-js', 'master-external-js', 'master-external-css', 'fonts', 'clean', 'templates'],
         'useref-bai-fabrica',
