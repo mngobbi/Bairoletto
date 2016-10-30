@@ -1,13 +1,9 @@
-﻿/*
-This file in the main entry point for defining Gulp tasks and using Gulp plugins.
-Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
-*/
+﻿/// <binding BeforeBuild='default' />
 
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
-var del = require('del');
 var merge = require('merge-stream');
 var runSequence = require('run-sequence');
 var templateCache = require('gulp-angular-templatecache');
@@ -22,7 +18,7 @@ gulp.task('templates', function () {
 
 gulp.task('default', function (callback) {
     runSequence(
-        ['master-angular-js', 'master-external-js', 'master-external-css', 'fonts', 'clean', 'templates'],
+        ['master-angular-js', 'master-external-js', 'master-external-css', 'fonts', 'templates'],
         'uglify',
         callback);
 });
@@ -95,11 +91,4 @@ gulp.task('uglify', function () {
       }))
       .pipe(uglify())
       .pipe(gulp.dest(''));
-});
-
-gulp.task('clean', function () {
-    return del([
-        './css/bai*.css',
-        './js/bai*.js'
-    ], { base: './' });
 });

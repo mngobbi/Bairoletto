@@ -17,7 +17,6 @@
     "angular-toastr": "^2.0.0",
     "angular-xeditable": "^0.2.0",
     "bootstrap": "^3.3.7",
-    "del": "^2.2.2",
     "font-awesome": "^4.6.3",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^2.0.0",
