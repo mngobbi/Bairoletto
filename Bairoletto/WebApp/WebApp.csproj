@@ -219,6 +219,8 @@
     <Content Include="bairoletto\core\layout\bai-panel-inside\bai-panel-inside.component.html" />
     <Content Include="bairoletto\core\components\bai-eventos\bai-eventos.component.html" />
     <Content Include="LoginCallback.ashx" />
+    <Content Include="deploy.cmd" />
+    <Content Include=".deployment" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
