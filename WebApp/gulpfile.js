@@ -5,7 +5,6 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-var rename = require('gulp-rename');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var del = require('del');
@@ -26,20 +25,6 @@ gulp.task('default', function (callback) {
         ['master-angular-js', 'master-external-js', 'master-external-css', 'fonts', 'clean', 'templates'],
         'uglify',
         callback);
-});
-
-gulp.task('dev', ['master-angular-js', 'master-external-js', 'master-external-css', 'fonts', 'templates'], function () {
-    var fabrica = gulp.src('bairoletto/fabrica/fabrica-raw.html')
-        .pipe(rename("fabrica.html"))
-        .pipe(gulp.dest('bairoletto/fabrica'));
-    var puntoventa = gulp.src('bairoletto/puntoventa/puntoventa-raw.html')
-       .pipe(rename("puntoventa.html"))
-       .pipe(gulp.dest('bairoletto/puntoventa'));
-    var login = gulp.src('bairoletto/login/login-raw.html')
-       .pipe(rename("login.html"))
-       .pipe(gulp.dest('bairoletto/login'));
-
-    return merge(fabrica, puntoventa, login);
 });
 
 gulp.task('fonts', function () {
