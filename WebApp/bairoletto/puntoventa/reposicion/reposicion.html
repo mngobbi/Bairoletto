@@ -8,6 +8,8 @@
 </div>
 <div class="row" cg-busy="{promise: repos.prom, message: 'Cargando ordenes de reposición ...'}">
     <div class="col-lg-6">
+        <h3>En proceso</h3>
+        <hr />
         <div ng-repeat="r in repos.ordenes_reposicion_proceso">
             <bai-reposicion-detalle ng-if="r.estado == 'nueva'" 
                                     bai-class="'primary'" bai-data="r" bai-title="'Pendiente de aprobar'" bai-icon="'fa-clock-o'">
@@ -48,6 +50,8 @@
         </div>    
     </div>
     <div class="col-lg-6">
+        <h3>Finalizadas</h3>
+        <hr />
         <div ng-repeat="r in repos.ordenes_reposicion_finalizadas">
             <bai-reposicion-detalle ng-if="r.estado == 'entregada'"
                                     bai-class="'success'" bai-data="r" bai-title="'Entregada'" bai-icon="'fa-check'">

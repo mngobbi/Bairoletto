@@ -1,5 +1,5 @@
 ﻿<div class="list-group">
-    <div ng-repeat="pv in repos.panel_aprobadas.data">
+    <div ng-repeat="pv in repos.panel_aprobadas.data | orderBy: 'fecha_estimada_entrega'">
         <bai-panel-inside bai-main-color="'bai-blue-green'" bai-opened-color="'#47938f'" bai-open="pv.open" ng-click="pv.open = !pv.open">
             <bai-info>
                 <div class="row">
