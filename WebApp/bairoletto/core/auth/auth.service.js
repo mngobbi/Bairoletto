@@ -17,7 +17,11 @@
 
         var userProfile = JSON.parse(localStorage.getItem('profile')) || {};
 
-        function login() {
+        function login(options) {
+            // initialize
+            var lock = new Auth0Lock('i8qGVLFoLgZl4vwdts6LZOKCsuGIC7DS', 'cjtodorovic.auth0.com', options);
+
+            // render
             lock.show();
         }
 

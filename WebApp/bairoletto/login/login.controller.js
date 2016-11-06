@@ -8,8 +8,13 @@
     function LoginController(authService) {
         var vm = this;
 
+        var options = {
+            container: 'hiw-login-container',
+            language: 'es'
+        };
+
         // Put the authService on $scope to access
         // the login method in the view
-        vm.authService = authService;
+        authService.login(options);
     }
 })();
