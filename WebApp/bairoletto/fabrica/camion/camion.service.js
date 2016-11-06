@@ -5,7 +5,7 @@
         .module('app.core')
         .factory('camionService', camionService);
 
-    function camionService($http) {
+    function camionService($http, $q, toastr) {
         var service = {
             get: getCamiones,
         };
@@ -22,10 +22,10 @@
             return result.data;
         }
         function dataError(e) {
-            var errorMessage = 'Se ha producido un error'
+            var errorMessage = 'Se ha producido un error';
             if (typeof e.data !== 'undefined')
-                errorMessage = e.data.Message;
-            console.log(newMessage);
+                console.log(e.data.Message);
+            toastr.error(errorMessage);
             return $q.reject(e);
         }
     }

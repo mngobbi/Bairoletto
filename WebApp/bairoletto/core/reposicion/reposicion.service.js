@@ -5,7 +5,7 @@
         .module('app.core')
         .factory('reposicionService', reposicionService);
 
-    function reposicionService($http, $q) {
+    function reposicionService($http, $q, toastr) {
         var service = {
             get: getReposiciones,
             getById: getReposicion,
@@ -135,10 +135,10 @@
             return result.data;
         }
         function dataError(e) {
-            var errorMessage = 'Se ha producido un error'
+            var errorMessage = 'Se ha producido un error';
             if (typeof e.data !== 'undefined')
-                errorMessage = e.data.Message;
-            console.log(errorMessage);
+                console.log(e.data.Message);
+            toastr.error(errorMessage);
             return $q.reject(e);
         }
         
