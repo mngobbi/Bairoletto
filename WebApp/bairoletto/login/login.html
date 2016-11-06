@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Fabrica</title>
+    <title>Login</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
@@ -14,34 +14,26 @@
     <script src="https://cdn.auth0.com/js/lock/10.2/lock.min.js"></script>
 
 </head>
-<body ng-app="app.core">
+<body ng-app="app.core" style="background-color:#eee">
     
     <script src="/js/sb-admin-2.js"></script>
     <script src="/js/bai-external.js"></script>
 
     <div class="container" ng-controller="LoginController as log">
         <div class="row">
+            <br /><br />
             <div class="col-md-4 col-md-offset-4">
-                <div class="panel panel-default" style="margin-top:25%">
-                    <div class="panel-body">
-                        <button class="btn btn-success btn-lg btn-block" ng-click="log.authService.login()">Login</button>
-                    </div>
-                </div>
+                <button class="btn btn-warning btn-lg btn-block" ng-click="log.authService.login()">Login</button>
             </div>
         </div>
     </div>
 
-    <!-- build:js ../../js/bai-log-core.js -->
     <script src="/bairoletto/core/core.module.js"></script>
     <script src="/bairoletto/core/core.config.js"></script>
     <script src="/bairoletto/core/core.run.js"></script>
     <script src="/bairoletto/core/auth/auth.service.js"></script>
-    <!-- endbuild -->
 
-    <!-- build:js ../../js/bai-log.js -->
-    <script src="/js/bai-templates.js"></script>
     <script src="/bairoletto/login/login.controller.js"></script>
-    <!-- endbuild -->
 
 </body>
 </html>

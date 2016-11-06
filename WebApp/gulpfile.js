@@ -6,20 +6,10 @@ var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var merge = require('merge-stream');
 var runSequence = require('run-sequence');
-var templateCache = require('gulp-angular-templatecache');
-var htmlmin = require('gulp-htmlmin');
-
-gulp.task('templates', function () {
-    return gulp.src('bairoletto/**/*.html')
-      .pipe(htmlmin({ collapseWhitespace: false }))
-      .pipe(templateCache({ module: 'templates', filename: 'bai-templates.js', standalone: true, base: function (file) { return '/bairoletto/' + file.relative; } }))
-      .pipe(gulp.dest('js'));
-});
 
 gulp.task('default', function (callback) {
     runSequence(
-        ['master-angular-js', 'master-external-js', 'master-external-css', 'fonts', 'templates'],
-        'uglify',
+        ['master-angular-js', 'master-external-js', 'master-external-css', 'fonts'],
         callback);
 });
 
@@ -77,18 +67,4 @@ gulp.task('master-external-css', function () {
     ])
         .pipe(concat('bai-external.css'))
         .pipe(gulp.dest('css'));
-});
-
-gulp.task('uglify', function () {
-    return gulp.src([
-        './js/bai-fab*.js',
-        './js/bai-pv*.js',
-        './js/bai-log*.js'
-    ], { base: './' })
-      .pipe(ngAnnotate({
-          add: true,
-          remove: true
-      }))
-      .pipe(uglify())
-      .pipe(gulp.dest(''));
 });
