@@ -358,6 +358,15 @@ namespace Data
 
             camion.Estado = CamionEstado.disponible;
 
+            var orden_prod_ids = orden.Productos.Select(p => p.ProductoId).ToArray();
+            PuntoVentaProducto[] productos = db.PuntosVentaProductos.Where(x => x.PuntoVentaId == orden.PuntoVentaId && orden_prod_ids.Contains(x.ProductoId)).ToArray();
+            OrdenReposicionDetalle orden_producto;
+            foreach (PuntoVentaProducto p in productos)
+            {
+                orden_producto = orden.Productos.Where(op => op.ProductoId == p.ProductoId).FirstOrDefault();
+                p.Stock = p.Stock + orden_producto.CantidadSolicitada;
+            }
+
             var ev = new OrdenReposicionEventoRecepcion(orden, orden.FechaEntrega, recepcion.usuario, recepcion.comentario);
             db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
