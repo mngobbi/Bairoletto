@@ -5,13 +5,14 @@ var concat = require('gulp-concat');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var merge = require('merge-stream');
-var runSequence = require('run-sequence');
+//var runSequence = require('run-sequence');
 
-gulp.task('default', function (callback) {
-    runSequence(
-        ['master-angular-js', 'master-external-js', 'master-external-css', 'fonts'],
-        callback);
-});
+gulp.task('default', [
+    'master-angular-js',
+    'master-external-js',
+    'master-external-css',
+    'fonts'], function () {
+    });
 
 gulp.task('fonts', function () {
     return gulp.src([

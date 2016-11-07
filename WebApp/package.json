@@ -28,7 +28,6 @@
     "merge-stream": "^1.0.0",
     "metismenu": "^2.5.2",
     "moment": "^2.14.1",
-    "run-sequence": "^1.2.2",
     "ui-select": "^0.18.1"
   }
 }
