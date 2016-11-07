@@ -275,6 +275,18 @@ namespace Data
                 camion.Estado = CamionEstado.disponible;
             }
 
+            if (orden.Estado != OrdenReposicionEstado.nueva)
+            {
+                var orden_prod_ids = orden.Productos.Select(p => p.ProductoId).ToArray();
+                Producto[] productos = db.Productos.Where(p => orden_prod_ids.Contains(p.Id)).ToArray();
+                OrdenReposicionDetalle orden_prod;
+                foreach (Producto p in productos)
+                {
+                    orden_prod = orden.Productos.Where(x => x.ProductoId == p.Id).FirstOrDefault();
+                    p.Stock = p.Stock + orden_prod.CantidadSolicitada;
+                }
+            }
+
             var ev = new OrdenReposicionEventoCancelacion(orden, rechazar.causa, rechazar.usuario, rechazar.comentario);
             db.OrdenesReposicionEventos.Add(new OrdenReposicionEvento(ev.GetEvento(), orden));
 
