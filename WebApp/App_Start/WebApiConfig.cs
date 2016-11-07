@@ -25,6 +25,8 @@ namespace Bairoletto
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+
             //Remove XML Formatter
             config.Formatters.Remove(config.Formatters.XmlFormatter);
 
