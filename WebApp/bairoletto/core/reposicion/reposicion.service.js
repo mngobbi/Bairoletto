@@ -136,8 +136,6 @@
         }
         function dataError(e) {
             var errorMessage = 'Se ha producido un error';
-            if (typeof e.data !== 'undefined')
-                console.log(e.data.Message);
             toastr.error(errorMessage);
             return $q.reject(e);
         }
